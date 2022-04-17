@@ -10,8 +10,7 @@ const theme = extendTheme({
     global: {
       // styles for the `body`
       body: {
-        bg: '#dde1e7'
-        //bgGradient: 'linear(to-r, #ee9ca7, #ffdde1)'
+        bgGradient: 'linear(to-r, #ee9ca7, #ffdde1)'
       }
     }
   }

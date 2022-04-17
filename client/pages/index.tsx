@@ -8,7 +8,7 @@ import { Stack, HStack, VStack } from '@chakra-ui/react'
 const Home: NextPage = () => {
   return (
     <Flex justify='center' align='center' height='100vh'>
-      <Container maxW='container.sm' bg='#dde1e7' borderRadius='20px' boxShadow='-5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3)'>
+      <Container maxW='container.sm' boxShadow='dark-lg' p='6' rounded='md' bg='white'>
       <VStack
       spacing={4}
       align='stretch'
@@ -26,9 +26,9 @@ const Home: NextPage = () => {
         </Center>
         <Spacer/>
         <Spacer/>
-        <Center>
-          <Text fontSize='3xl'>Search</Text>
-        </Center>
+        <Text fontSize='lg'>
+          Craft custom and unique cocktails 🍸 based on your favorite artist 👨‍🎤, album 💽, mood 😎, or event 🎉.
+        </Text>
         <Center>
           <InputGroup>
             <InputLeftElement
