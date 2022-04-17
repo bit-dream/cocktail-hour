@@ -11,6 +11,5 @@ def craft_drink():
     recipe = generate_drink_recipe(genres)
     return json.dumps(recipe)
 
-
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')
