@@ -1,5 +1,7 @@
 import spacy
 from cocktail import spirits, liqueurs, garnishes, sweetners, bitters, optionals, toppers, spices, fruits, fragrances, glasses
+from spotify_service import Spotify
+from secrets import client_id, client_secret
 
 nlp = spacy.load('en_core_web_md')
 
@@ -83,4 +85,3 @@ def generate_drink_recipe(genres: list) -> dict:
         'fruit': fruit,
         'fragrance': fragrance
     }
-

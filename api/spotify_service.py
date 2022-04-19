@@ -1,72 +1,150 @@
-from secrets import client_id, client_secret
-from unittest.util import strclass
 import requests as web
 from requests.auth import HTTPBasicAuth
-from urllib.parse import urlencode
-import base64
-import datetime
-import pprint
+import base64, datetime
 
-def form_endpoint_from_params(base: str, params: list):
+class Spotify():
+
+    def __init__(
+        self, 
+        client_id: str,
+        client_secret: str,
+        api_url : str = 'https://api.spotify.com/v1',
+        token_url : str = 'https://accounts.spotify.com/api/token'
+
+    ) -> None:
+
+        # Public properties
+        self.client_id = client_id
+        self.client_secret = client_secret
+        self.api_url = api_url
+        self.token_url = token_url
+
+        # Private properties
+        self._token = None
+        self._token_expires_in = None
+        self._token_type = None
+        self._token_access_time = None
+
+        # Run authentication when class is init
+        self.__authenticate()
+
+    def __create_client_cred(self) -> dict:
+        
+        client_creds = f'{self.client_id}:{self.client_secret}'
+        client_creds_b64 = base64.b64encode(client_creds.encode())
+
+        data = {'grant_type': 'client_credentials'}
+        headers = {'Authorization': f'Basic {client_creds_b64.decode()}'}
+
+        return {'data': data, 'headers': headers}
+
+    def __authenticate(self) -> None:
+
+        cred = self.__create_client_cred()   
+
+        res = web.post(self.token_url, data = cred['data'], headers = cred['headers'])
+        if not self.__is_valid_data(res):
+            raise Exception('Spotify Authentication Failed!')
+
+        json_data = res.json()
+
+        self._token = json_data['access_token']
+        self._token_expires_in = json_data['expires_in']
+        self._token_type = json_data['token_type']
+        self._token_access_time = datetime.datetime.now()
+
+
+    def __form_endpoint_from_params(self,base: str, params: list) -> str:
     
-    query = ''
-    for param in params:
-        query = query + '/' + param
+        query = ''
+        for param in params:
+            query = query + '/' + param
 
-    return f'{base}{query}'
+        return f'{base}{query}'
 
-def authenticate_spotify():
+    def __create_request_headers(self):
+
+        return {'Authorization': f'Bearer {self._token}'}
+
+    def __is_valid_data(self,response):
+        
+        if response.status_code == 200:
+            return True
+
+        return False
     
-    api_token_url = 'https://accounts.spotify.com/api/token'
-    client_creds = f'{client_id}:{client_secret}'
-    client_creds_b64 = base64.b64encode(client_creds.encode())
+    def get_genres_by_artist(self, artist: str) -> list:
 
-    data = {'grant_type': 'client_credentials'}
-    headers = {'Authorization': f'Basic {client_creds_b64.decode()}'}
-    res = web.post(api_token_url,data=data,headers=headers)
-    json_data = res.json()
+        endpoint = self.__form_endpoint_from_params(self.api_url, ['search'])
 
-    return {
-        'token': json_data['access_token'], 
-        'expires_in': json_data['expires_in'], 
-        'token_type': json_data['token_type'],
-        'access_time': datetime.datetime.now()
-    }
-    
-def get_genres_by_artist(auth,artist) -> list:
+        # Form query parameters by artist
+        payload = {'q': artist, 'type': 'artist', 'limit': '1'}
 
-    endpoint = form_endpoint_from_params(uri,['search'])
+        res = web.get(endpoint, headers = self.__create_request_headers(), params = payload)
 
-    token = auth['token']
-    headers = {'Authorization': f'Bearer {token}'}
+        if self.__is_valid_data(res):
+            data = res.json()
+            try:
+                genres = data['artists']['items'][0]['genres']
+            except:
+                return None
+            return genres
 
-    # Form query parameters by artist
-    payload = {'q': artist,'type': 'artist', 'limit': '2'}
+        return None
 
-    res = web.get(endpoint, headers = headers, params = payload)
-    data = res.json()
+    def get_genres_from_album(self, album: str) -> list:
 
-    genres = data['artists']['items'][0]['genres']
+        endpoint = self.__form_endpoint_from_params(self.api_url, ['search'])
 
-    return genres
+        # Form query parameters by artist
+        payload = {'q': album, 'type': 'album', 'limit': '1'}
 
-def get_genres_by_album(auth,album):
+        res = web.get(endpoint, headers = self.__create_request_headers(), params = payload)
 
-    endpoint = form_endpoint_from_params(uri,['search'])
+        if self.__is_valid_data(res):
 
-    token = auth['token']
-    headers = {'Authorization': f'Bearer {token}'}
+            # Albums don't return genres, need to do another request to get them
+            data = res.json()
+            try:
+                id = data['albums']['items'][0]['id']
+            except:
+                return None
 
-    # Form query parameters by artist
-    payload = {'q': album,'type': 'album', 'limit': '1'}
+            genres = self.get_genres_from_album_id(id)
+            
+            if not genres:
 
-    res = web.get(endpoint, headers = headers, params = payload)
-    data = res.json()
+                try:
+                    artist_name = data['albums']['items'][0]['artists'][0]['name']
+                except:
+                    return None
+                
+                return self.get_genres_by_artist(artist_name)
+            else:
+                return genres
+        
+        return None
 
-    return data
+    def get_genres_from_album_id(self,id: str):
 
-auth = authenticate_spotify()
-uri = 'https://api.spotify.com/v1'
-data = get_genres_by_artist(auth,'Teengirl Fantasy')
+        endpoint = self.__form_endpoint_from_params(self.api_url, ['albums', id])
 
-print(data)
+        res = web.get(endpoint, headers = self.__create_request_headers())
+
+        if self.__is_valid_data(res):
+
+            # Albums don't return genres, need to do another request to get them
+            data = res.json()
+            return data['genres']
+
+        return None
+
+    def get_genres_from_keywords(self,keywords):
+
+        genres = self.get_genres_by_artist(keywords)
+
+        if not genres:
+            genres = self.get_genres_from_album(keywords)
+
+        return genres
+
