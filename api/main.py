@@ -6,9 +6,9 @@ app = flask.Flask(__name__)
 
 @app.route('/craftdrink', methods=['GET'])
 def craft_drink():
-    genres = request.args.getlist('genre')
+    keywords = request.args.getlist('search')
     
-    recipe = generate_drink_recipe(genres)
+    recipe = generate_drink_recipe(keywords)
     return json.dumps(recipe)
 
 if __name__ == '__main__':

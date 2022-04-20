@@ -18,6 +18,30 @@ def _should_be_optional_ingredients(genre: str, options: list, threshold=0.15):
     else:
         return None
 
+def _find_best_ingredient_slow(genres: list, ingredient_list: list):
+    
+    best = {'ingredient': None, 'score': 0}
+    scoring = {}
+    for genre in genres:
+        sim_arr = []
+        scoring[genre] = {}
+        scoring[genre]['ingredient'] = []
+        scoring[genre]['score'] = []
+        i = scoring[genre]['ingredient']
+        s = scoring[genre]['score']
+        for ingredient in ingredient_list:
+            sim_score = nlp(genre).similarity(nlp(ingredient))
+            sim_arr.append(sim_score)
+            
+            i.append(ingredient)
+            s.append(sim_score)
+
+        max_idx = _get_max_idx(sim_arr)
+        if sim_arr[max_idx] > best['score']:
+            best['ingredient'] =  ingredient_list[max_idx]
+            best['score'] = sim_arr[max_idx]
+        
+    return best['ingredient']
 
 def _find_best_ingredient(genre: str, ingredient_list: list):
 
@@ -38,11 +62,11 @@ def generate_drink_recipe(genres: list) -> dict:
     #TODO handle edget case of list being empty
 
     # Bare min. for a cocktail should be: spirit, sweetner, bitter, garnish, and how it's served
-    spirit = _find_best_ingredient(genres[0],spirits)
-    sweetner = _find_best_ingredient(genres[0],sweetners)
-    bitter = _find_best_ingredient(genres[0],bitters)
-    garnish = _find_best_ingredient(genres[0],garnishes)
-    glass = _find_best_ingredient(genres[0],glasses)
+    spirit = _find_best_ingredient_slow(genres,spirits)
+    sweetner = _find_best_ingredient_slow(genres,sweetners)
+    bitter = _find_best_ingredient_slow(genres,bitters)
+    garnish = _find_best_ingredient_slow(genres,garnishes)
+    glass = _find_best_ingredient_slow(genres,glasses)
 
     # initialize optionals to None 
     liqueur = None
@@ -85,3 +109,14 @@ def generate_drink_recipe(genres: list) -> dict:
         'fruit': fruit,
         'fragrance': fragrance
     }
+
+
+if __name__ == '__main__':
+
+    spotify = Spotify(client_id,client_secret)
+
+    search = 'piri'
+    genres = spotify.get_genres_from_keywords(search)
+
+    receipe = generate_drink_recipe(genres)
+    print(receipe)
