@@ -78,51 +78,57 @@ class Spotify():
         endpoint = self.__form_endpoint_from_params(self.api_url, ['search'])
 
         # Form query parameters by artist
-        payload = {'q': artist, 'type': 'artist', 'limit': '1'}
+        payload = {'q': artist, 'type': 'artist', 'limit': '50'}
 
         res = web.get(endpoint, headers = self.__create_request_headers(), params = payload)
 
         if self.__is_valid_data(res):
             data = res.json()
-            try:
-                genres = data['artists']['items'][0]['genres']
-            except:
-                return None
-            return genres
+            artist_data = data['artists']['items']
+            for data in artist_data:
+                try:
+                    found_artist_name = data['name']
+                    if found_artist_name == artist:
+                        genres = data['genres']
+                        if not genres:
+                            print(f'Artist {found_artist_name} was found on spotify, but no record of genres for {found_artist_name}')
+                            return None
+
+                        return genres
+                except:
+                    return None
 
         return None
 
-    def get_genres_from_album(self, album: str) -> list:
+
+    def get_genres_by_album(self, album: str) -> list:
 
         endpoint = self.__form_endpoint_from_params(self.api_url, ['search'])
 
         # Form query parameters by artist
-        payload = {'q': album, 'type': 'album', 'limit': '1'}
+        payload = {'q': album, 'type': 'album', 'limit': '50'}
 
         res = web.get(endpoint, headers = self.__create_request_headers(), params = payload)
 
         if self.__is_valid_data(res):
-
-            # Albums don't return genres, need to do another request to get them
             data = res.json()
-            try:
-                id = data['albums']['items'][0]['id']
-            except:
-                return None
-
-            genres = self.get_genres_from_album_id(id)
-            
-            if not genres:
-
+            album_data = data['albums']['items']
+            for data in album_data:
                 try:
-                    artist_name = data['albums']['items'][0]['artists'][0]['name']
+                    found_album_name = data['name']
+                    if found_album_name == album:
+                        id = data['id']
+                        genres = self.get_genres_from_album_id(id)
+
+                        if not genres:
+                            print(f'Album {found_album_name} was found on spotify, but no record of genres for {found_album_name}')
+                            # Back up, find albums artist and see if they have genres
+                            return self.get_genres_by_artist_2(data['artists'][0]['name'])
+                            
+                        return genres
                 except:
                     return None
-                
-                return self.get_genres_by_artist(artist_name)
-            else:
-                return genres
-        
+
         return None
 
     def get_genres_from_album_id(self,id: str):
@@ -144,7 +150,7 @@ class Spotify():
         genres = self.get_genres_by_artist(keywords)
 
         if not genres:
-            genres = self.get_genres_from_album(keywords)
+            genres = self.get_genres_by_album(keywords)
 
         return genres
 

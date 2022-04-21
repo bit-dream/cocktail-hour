@@ -18,7 +18,7 @@ def _should_be_optional_ingredients(genre: str, options: list, threshold=0.15):
     else:
         return None
 
-def _find_best_ingredient_slow(genres: list, ingredient_list: list):
+def _find_best_ingredient(genres: list, ingredient_list: list):
     
     best = {'ingredient': None, 'score': 0}
     scoring = {}
@@ -43,14 +43,6 @@ def _find_best_ingredient_slow(genres: list, ingredient_list: list):
         
     return best['ingredient']
 
-def _find_best_ingredient(genre: str, ingredient_list: list):
-
-    sim_arr = []
-    for ingredient in ingredient_list:
-        sim_arr.append(nlp(genre).similarity(nlp(ingredient)))
-    
-    return ingredient_list[_get_max_idx(sim_arr)]
-
 def _get_max_idx(arr: list):
 
     max_value = max(arr)
@@ -62,11 +54,11 @@ def generate_drink_recipe(genres: list) -> dict:
     #TODO handle edget case of list being empty
 
     # Bare min. for a cocktail should be: spirit, sweetner, bitter, garnish, and how it's served
-    spirit = _find_best_ingredient_slow(genres,spirits)
-    sweetner = _find_best_ingredient_slow(genres,sweetners)
-    bitter = _find_best_ingredient_slow(genres,bitters)
-    garnish = _find_best_ingredient_slow(genres,garnishes)
-    glass = _find_best_ingredient_slow(genres,glasses)
+    spirit = _find_best_ingredient(genres,spirits)
+    sweetner = _find_best_ingredient(genres,sweetners)
+    bitter = _find_best_ingredient(genres,bitters)
+    garnish = _find_best_ingredient(genres,garnishes)
+    glass = _find_best_ingredient(genres,glasses)
 
     # initialize optionals to None 
     liqueur = None
@@ -85,17 +77,18 @@ def generate_drink_recipe(genres: list) -> dict:
         optionals_genre = genres[0]
 
     if num_genres > 3:
-        liqueur = _find_best_ingredient(optionals_genre,liqueurs)
+        liqueur = _find_best_ingredient(genres,liqueurs)
 
-    for option in options:
-        if option == 'spice':
-            spice = _find_best_ingredient(optionals_genre,spices)
-        elif option == 'fruit':
-            fruit = _find_best_ingredient(optionals_genre,fruits)
-        elif option == 'topper':
-            topper = _find_best_ingredient(optionals_genre,toppers)
-        elif option == 'fragrance':
-            fragrance = _find_best_ingredient(optionals_genre,fragrances)
+    if options:
+        for option in options:
+            if option == 'spice':
+                spice = _find_best_ingredient(genres,spices)
+            elif option == 'fruit':
+                fruit = _find_best_ingredient(genres,fruits)
+            elif option == 'topper':
+                topper = _find_best_ingredient(genres,toppers)
+            elif option == 'fragrance':
+                fragrance = _find_best_ingredient(genres,fragrances)
     
     return {
         'spirit': spirit,
@@ -115,8 +108,11 @@ if __name__ == '__main__':
 
     spotify = Spotify(client_id,client_secret)
 
-    search = 'piri'
-    genres = spotify.get_genres_from_keywords(search)
+    search = 'asdf'
+    keywords = spotify.get_genres_from_keywords(search)
 
-    receipe = generate_drink_recipe(genres)
+    if not keywords:
+        keywords = [search]
+
+    receipe = generate_drink_recipe(keywords)
     print(receipe)
