@@ -1,13 +1,25 @@
 import type { NextPage } from 'next'
-import { Link } from 'next/link'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
 import { Center, Container, Heading, List, ListIcon, ListItem } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftElement, InputRightElement, Button } from '@chakra-ui/react'
 import { Search2Icon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Stack, HStack, VStack } from '@chakra-ui/react'
 import { Fade, ScaleFade, Slide, SlideFade } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const CraftDrink: NextPage = () => {
+
+  // Get router keywords from url
+  const router = useRouter();
+  const search = router.query.keywords;
+  const drinkName = search ? search.toUpperCase() : '';
+
+  // Perform api request from search
+  //const [drink, setDrink] = useState([]);
+  //const [isLoading, setIsLoading] = useState(false);
+
+
   return (
     <Flex justify='center' align='center' height='100vh'>
       <ScaleFade initialScale={0.50} in={true}>
@@ -23,7 +35,7 @@ const CraftDrink: NextPage = () => {
               fontSize='5xl'
               fontWeight='extrabold'
             >
-              The Saosin
+              THE {drinkName}
             </Text>
           </Center>
           <Spacer/>
@@ -56,9 +68,11 @@ const CraftDrink: NextPage = () => {
             <Text mt={4}>Start by combining tequila and seltzer in a cocktail shaker. Muddle cherry and orange. Shake vigerously until chilled. Serve in a coup class. Garnish with lime wedge.</Text>
           </Box>
         </Stack>
-          <Button colorScheme='teal' variant='outline'>
-            Craft Another Cocktail
-          </Button>
+          <Link href='/'>
+            <Button colorScheme='teal' variant='outline'>
+              Craft Another Cocktail
+            </Button>
+          </Link>
         </VStack>
         </Container>
       </ScaleFade>

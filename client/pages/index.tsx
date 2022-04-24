@@ -5,6 +5,7 @@ import { Input, InputGroup, InputLeftElement, InputRightElement, Button } from '
 import { Search2Icon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Stack, HStack, VStack } from '@chakra-ui/react'
 import { Fade, ScaleFade, Slide, SlideFade } from '@chakra-ui/react'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
@@ -37,9 +38,9 @@ const Home: NextPage = () => {
                 pointerEvents='none'
                 children={<Search2Icon color='gray.300' />}
               />
-              <Input type='tel' placeholder='Enter Artist or Album Name' />
+              <Input type='search' placeholder='Enter Artist or Album Name' />
               <InputRightElement width='4.5rem'>
-                <Button colorScheme='blue' h='1.75rem' size='sm'>Craft</Button>
+                <Link href='/craftdrink/help'><Button colorScheme='blue' h='1.75rem' size='sm'>Craft</Button></Link>
               </InputRightElement>
             </InputGroup>
           </Center>
