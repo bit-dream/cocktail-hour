@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { Link } from 'next/link'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
 import { Center, Container, Heading, List, ListIcon, ListItem } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftElement, InputRightElement, Button } from '@chakra-ui/react'
@@ -55,9 +56,9 @@ const CraftDrink: NextPage = () => {
             <Text mt={4}>Start by combining tequila and seltzer in a cocktail shaker. Muddle cherry and orange. Shake vigerously until chilled. Serve in a coup class. Garnish with lime wedge.</Text>
           </Box>
         </Stack>
-        <Button colorScheme='teal' variant='outline'>
-          Craft Another Cocktail
-        </Button>
+          <Button colorScheme='teal' variant='outline'>
+            Craft Another Cocktail
+          </Button>
         </VStack>
         </Container>
       </ScaleFade>

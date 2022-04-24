@@ -110,4 +110,10 @@ optionals = [
     'fragrance'
 ]
 
+styles = [
+    'shaken',
+    'stirred',
+    'blended',
+    'layered'
+]
 

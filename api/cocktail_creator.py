@@ -1,5 +1,5 @@
 import spacy
-from cocktail import spirits, liqueurs, garnishes, sweetners, bitters, optionals, toppers, spices, fruits, fragrances, glasses
+from cocktail import spirits, liqueurs, garnishes, sweetners, bitters, optionals, toppers, spices, fruits, fragrances, glasses, styles
 from spotify_service import Spotify
 from secrets import client_id, client_secret
 
@@ -59,6 +59,7 @@ def generate_drink_recipe(genres: list) -> dict:
     bitter = _find_best_ingredient(genres,bitters)
     garnish = _find_best_ingredient(genres,garnishes)
     glass = _find_best_ingredient(genres,glasses)
+    style = _find_best_ingredient(genres,styles)
 
     # initialize optionals to None 
     liqueur = None
@@ -100,7 +101,8 @@ def generate_drink_recipe(genres: list) -> dict:
         'topper': topper,
         'spice': spice,
         'fruit': fruit,
-        'fragrance': fragrance
+        'fragrance': fragrance,
+        'style': style
     }
 
 
@@ -108,9 +110,9 @@ if __name__ == '__main__':
 
     spotify = Spotify(client_id,client_secret)
 
-    search = 'asdf'
+    search = "Marshmello"
     keywords = spotify.get_genres_from_keywords(search)
-
+    print(keywords)
     if not keywords:
         keywords = [search]
 
