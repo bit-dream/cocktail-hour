@@ -21,6 +21,21 @@ liqueurs = [
     'chambord',
     'sloe gin',
     'ancho reyes',
+    'cachaca',
+    'creme de cacao',
+    'creme de menthe',
+    'creme de noyaux',
+    'creme de violette',
+    'creme de banane',
+    'lillet blanc',
+    'lillet rouge',
+    'lillet vert',
+    'absinthe',
+    'drambuie',
+    'gimlet',
+    'vermouth',
+    'espresso liquore',
+    'pisco'
 ]
 
 glasses = [
@@ -28,7 +43,11 @@ glasses = [
     'highball',
     'old fashioned',
     'martini',
-    'flute'
+    'flute',
+    'tiki',
+    'margarita',
+    'daiquiri',
+    'wine'
 ]
 
 garnishes = [
@@ -113,7 +132,6 @@ optionals = [
 styles = [
     'shaken',
     'stirred',
-    'blended',
-    'layered'
+    'blended'
 ]
 
