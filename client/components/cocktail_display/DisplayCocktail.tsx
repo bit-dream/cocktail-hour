@@ -1,10 +1,11 @@
-import { Box, Spacer, Text } from '@chakra-ui/react'
-import { Center, Container, Heading, List, ListIcon, ListItem } from '@chakra-ui/react'
+import { Spacer, Text } from '@chakra-ui/react'
+import { Center, Container} from '@chakra-ui/react'
 import { Button } from '@chakra-ui/react'
-import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { Stack, VStack } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import IngredientDisplay from '../../components/cocktail_display/IngredientDisplay'
+import HowToDisplay from '../../components/cocktail_display/HowToDisplay'
 
 interface CocktailDisplay {
   drinkName: string,
@@ -12,7 +13,7 @@ interface CocktailDisplay {
   ingredients: string[],
   howToHeading: string,
   howTo: string,
-  btnTxt: string | undefined
+  btnTxt?: string
 }
 
 const DisplayCocktail = (props: CocktailDisplay) => { 
@@ -37,31 +38,14 @@ const DisplayCocktail = (props: CocktailDisplay) => {
         <Spacer/>
 
       <Stack spacing={8} direction='row'>
-        <Box boxShadow='md' p='6' rounded='md' bg='white'>
-          <Heading fontSize='xl'>{props.ingredientHeading}</Heading>
-          <List spacing={3}>
-            <ListItem>
-              <ListIcon as={ArrowForwardIcon} color='green.500' />
-              Tequila
-            </ListItem>
-            <ListItem>
-              <ListIcon as={ArrowForwardIcon} color='green.500' />
-              Seltzer
-            </ListItem>
-            <ListItem>
-              <ListIcon as={ArrowForwardIcon} color='green.500' />
-              Cherry
-            </ListItem>
-            <ListItem>
-              <ListIcon as={ArrowForwardIcon} color='green.500' />
-              Orange
-            </ListItem>
-          </List>
-        </Box>
-        <Box boxShadow='md' p='6' rounded='md' bg='white'>
-          <Heading fontSize='xl'>{props.howToHeading}</Heading>
-          <Text mt={4}>{props.howTo}</Text>
-        </Box>
+        <IngredientDisplay
+          ingredients={props.ingredients}
+          heading={props.ingredientHeading}
+        />
+        <HowToDisplay
+          heading={props.howToHeading}
+          directions={props.howTo}
+        />
       </Stack>
         <Link href='/'>
           <Button colorScheme='teal' variant='outline'>

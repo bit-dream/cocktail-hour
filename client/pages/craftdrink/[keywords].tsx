@@ -27,10 +27,9 @@ const CraftDrink: NextPage = () => {
         <DisplayCocktail
           drinkName = {drinkName}
           ingredientHeading = 'Ingredients'
-          ingredients = {['Tequila', 'Seltzer', 'Cherry', 'Orange']}
+          ingredients = {['Tequila', 'Seltzer', 'Cherry', 'Orange','Cocktail Shaker', 'Ice', 'Rum', 'Gin', 'Vodka', 'Lime', 'Lemon', 'Cherry']}
           howToHeading = 'How To'
           howTo = 'Start by combining tequila and seltzer in a cocktail shaker. Muddle cherry and orange. Shake vigerously until chilled. Serve in a coup class. Garnish with lime wedge.'
-          btnTxt = 'Craft Cocktail' 
         />
       </ScaleFade>
     </Flex>
