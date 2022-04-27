@@ -1,6 +1,7 @@
 import { List, ListItem, Box, ListIcon, Heading } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import { HStack, Center } from '@chakra-ui/react'
 
 interface Ingredients {
     ingredients: string[],
@@ -11,24 +12,45 @@ interface Ingredients {
 const IngredientDisplay = (props: Ingredients) => {
     
     return(
-        <Box boxShadow='md' p='6' rounded='md' bg='white'>
-          <Heading fontSize='xl'>{props.heading}</Heading>
-
-          <List spacing={3}>
-            {props.isLoading ?
-                <ListItem><SkeletonText mt='4' noOfLines={8} spacing='4' /></ListItem>
-                :
-                props.ingredients.map(ingredient => {
-                    return(
-                    <ListItem>
-                        <ListIcon as={ArrowForwardIcon} color='green.500' />
-                        {ingredient}
-                    </ListItem>
-                    ) 
-                })
-            }
-          </List>
-        </Box>
+            <Box p='6' rounded='md' minWidth='300px'>
+            <Center>
+            <Heading fontSize='xl'>{props.heading}</Heading>
+            <HStack spacing={10}>
+                <Box>
+                    <Heading fontSize='sm'>Ingredient</Heading>
+                    <List spacing={1}>
+                        {props.isLoading ?
+                            <ListItem><SkeletonText mt='4' noOfLines={8} spacing='4' /></ListItem>
+                            :
+                            props.ingredients.map(ingredient => {
+                                return(
+                                <ListItem>
+                                    {ingredient}
+                                </ListItem>
+                                ) 
+                            })
+                        }
+                    </List>
+                </Box>
+                <Box>
+                    <Heading fontSize='sm'>Amount</Heading>
+                    <List spacing={1}>
+                        {props.isLoading ?
+                            <ListItem><SkeletonText mt='4' noOfLines={8} spacing='4' /></ListItem>
+                            :
+                            props.ingredients.map(ingredient => {
+                                return(
+                                <ListItem>
+                                    {ingredient}
+                                </ListItem>
+                                ) 
+                            })
+                        }
+                    </List>
+                </Box>
+            </HStack>
+            </Center>
+            </Box>
     )
 }
 

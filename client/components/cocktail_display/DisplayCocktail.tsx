@@ -1,4 +1,4 @@
-import { Spacer, Text } from '@chakra-ui/react'
+import { Spacer, Text, Box } from '@chakra-ui/react'
 import { Center, Container} from '@chakra-ui/react'
 import { Button } from '@chakra-ui/react'
 import { Stack, VStack } from '@chakra-ui/react'
@@ -39,16 +39,18 @@ const DisplayCocktail = (props: CocktailDisplay) => {
         <Spacer/>
 
       <Stack spacing={4} direction='row'>
-        <IngredientDisplay
-          ingredients={props.ingredients}
-          heading={props.ingredientHeading}
-          isLoading={props.isLoading}
-        />
-        <HowToDisplay
-          heading={props.howToHeading}
-          directions={props.howTo}
-          isLoading={props.isLoading}
-        />
+        <Box p={4} display={{ md: 'flex' }}>
+          <HowToDisplay
+            heading={props.howToHeading}
+            directions={props.howTo}
+            isLoading={props.isLoading}
+          />
+          <IngredientDisplay
+            ingredients={props.ingredients}
+            heading={props.ingredientHeading}
+            isLoading={props.isLoading}
+          />
+        </Box>
       </Stack>
         <Link href='/'>
           <Button colorScheme='teal' variant='outline'>

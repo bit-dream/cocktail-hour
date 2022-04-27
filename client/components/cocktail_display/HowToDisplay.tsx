@@ -9,7 +9,7 @@ interface HowTo {
 
 const HowToDisplay = (props: HowTo) => {
     return(
-        <Box boxShadow='md' p='6' rounded='md' bg='white'>
+        <Box p='6' rounded='md' mt={{ base: 4, md: 0 }}>
           <Heading fontSize='xl'>{props.heading}</Heading>
           {
             props.isLoading ? 
