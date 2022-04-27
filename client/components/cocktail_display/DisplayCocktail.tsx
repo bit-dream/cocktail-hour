@@ -14,6 +14,7 @@ interface CocktailDisplay {
   howToHeading: string,
   howTo: string,
   btnTxt?: string
+  isLoading: boolean
 }
 
 const DisplayCocktail = (props: CocktailDisplay) => { 
@@ -37,14 +38,16 @@ const DisplayCocktail = (props: CocktailDisplay) => {
         <Spacer/>
         <Spacer/>
 
-      <Stack spacing={8} direction='row'>
+      <Stack spacing={4} direction='row'>
         <IngredientDisplay
           ingredients={props.ingredients}
           heading={props.ingredientHeading}
+          isLoading={props.isLoading}
         />
         <HowToDisplay
           heading={props.howToHeading}
           directions={props.howTo}
+          isLoading={props.isLoading}
         />
       </Stack>
         <Link href='/'>
