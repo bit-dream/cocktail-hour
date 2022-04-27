@@ -9,7 +9,8 @@ import {
     InputRightElement, 
     Button, 
     FormControl, 
-    FormLabel 
+    FormLabel,
+    useToast 
 } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 import { VStack } from '@chakra-ui/react'
@@ -26,6 +27,20 @@ const CocktailSearch = (props: SearchProps) => {
 
     const [searchText, setSearchText] = useState('');
     const router = useRouter();
+    const toast = useToast()
+
+    const redirectCallback = (): void => {
+        if (searchText !== '') {
+            router.push(`/craftdrink/${searchText}`);
+            } else {
+                toast({
+                    title: 'oops!',
+                    description: "You need to provide search keywords, such as 'Katy Perry' or 'The Beatles' to craft a cocktail.",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                })
+    }}
 
     return (
         <Container maxW='container.sm' boxShadow='dark-lg' p='6' rounded='md' bg='white'>
@@ -62,24 +77,14 @@ const CocktailSearch = (props: SearchProps) => {
                     type='search' 
                     placeholder='Enter Artist or Album Name'
                     onChange={(e) => setSearchText(e.target.value)}
-                    onKeyPress={e=> {
-                    if (e.key === 'Enter') {
-                        if (searchText !== '') {
-                        router.push(`/craftdrink/${searchText}`);
-                        }
-                    }
-                }}
+                    onKeyPress={e=> {if (e.key === 'Enter') {redirectCallback()}}}
                 />
                 <InputRightElement width='4.5rem'>
                     <Button 
                         colorScheme='blue' 
                         h='1.75rem' 
                         size='sm'
-                        onClick={() => {
-                            if (searchText !== '') {
-                            router.push(`/craftdrink/${searchText}`);
-                            }
-                        }}
+                        onClick={() => {redirectCallback()}}
                     >
                     Craft
                     </Button>
