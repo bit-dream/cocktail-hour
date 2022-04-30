@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <ScaleFade initialScale={0.50} in={true}>
         <CocktailSearch 
           title = 'Cocktail Hour'
-          description = 'Craft a special cocktail from your favorite artist, album, event, or mood.'
+          description = 'Elevate your next expierence with a specaility crafted cocktail based on your favorite artist, album, mood, or event'
         />
       </ScaleFade>
     </Flex>

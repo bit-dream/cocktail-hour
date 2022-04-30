@@ -1,7 +1,7 @@
-import { List, ListItem, Box, ListIcon, Heading } from '@chakra-ui/react'
+import { List, ListItem, Box, ListIcon, Heading, Spacer } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
-import { HStack, Center } from '@chakra-ui/react'
+import { HStack, Center, TableContainer, Table, Thead, Tr, Th, Td, Tbody, TableCaption } from '@chakra-ui/react'
 
 interface Ingredients {
     ingredients: string[],
@@ -12,45 +12,38 @@ interface Ingredients {
 const IngredientDisplay = (props: Ingredients) => {
     
     return(
-            <Box p='6' rounded='md' minWidth='300px'>
-            <Center>
-            <Heading fontSize='xl'>{props.heading}</Heading>
-            <HStack spacing={10}>
-                <Box>
-                    <Heading fontSize='sm'>Ingredient</Heading>
-                    <List spacing={1}>
-                        {props.isLoading ?
-                            <ListItem><SkeletonText mt='4' noOfLines={8} spacing='4' /></ListItem>
-                            :
-                            props.ingredients.map(ingredient => {
-                                return(
-                                <ListItem>
-                                    {ingredient}
-                                </ListItem>
-                                ) 
-                            })
-                        }
-                    </List>
-                </Box>
-                <Box>
-                    <Heading fontSize='sm'>Amount</Heading>
-                    <List spacing={1}>
-                        {props.isLoading ?
-                            <ListItem><SkeletonText mt='4' noOfLines={8} spacing='4' /></ListItem>
-                            :
-                            props.ingredients.map(ingredient => {
-                                return(
-                                <ListItem>
-                                    {ingredient}
-                                </ListItem>
-                                ) 
-                            })
-                        }
-                    </List>
-                </Box>
-            </HStack>
-            </Center>
-            </Box>
+        <Box p='6' rounded='md' minWidth='230px' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Center>
+        <TableContainer>
+            <Table size='sm' variant='unstyled'>
+                <TableCaption>What You'll Need</TableCaption>
+                <Thead>
+                <Tr>
+                    <Th></Th>
+                    <Th></Th>
+                </Tr>
+                </Thead>
+                <Tbody>
+                {props.isLoading ?
+                    <Tr>
+                        <Td><SkeletonText mt='4' noOfLines={8} spacing='4' /></Td>
+                        <Td><SkeletonText mt='4' noOfLines={8} spacing='4' /></Td>
+                    </Tr>
+                    :
+                    props.ingredients.map(ingredient => {
+                        return(
+                        <Tr>
+                            <Td isNumeric>2 oz</Td>
+                            <Td>{ingredient}</Td>
+                        </Tr>
+                        ) 
+                    })
+                }
+                </Tbody>
+            </Table>
+        </TableContainer>
+        </Center>
+        </Box>
     )
 }
 

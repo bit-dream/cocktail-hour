@@ -10,7 +10,9 @@ import {
     Button, 
     FormControl, 
     FormLabel,
-    useToast 
+    useToast,
+    Box,
+    Image 
 } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 import { VStack } from '@chakra-ui/react'
@@ -50,6 +52,9 @@ const CocktailSearch = (props: SearchProps) => {
             >
             <Spacer/>
             <Center>
+                <Box boxSize='40px'>
+                    <Image src='' alt='Dan Abramov' />
+                </Box>
                 <Text
                     bgGradient='linear(to-l, #7928CA, #FF0080)'
                     bgClip='text'
