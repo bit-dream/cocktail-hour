@@ -12,7 +12,7 @@ interface CocktailDisplay {
   ingredientHeading: string,
   ingredients: string[],
   howToHeading: string,
-  howTo: string,
+  howTo: string[],
   btnTxt?: string
   isLoading: boolean
 }
@@ -32,7 +32,13 @@ const DisplayCocktail = (props: CocktailDisplay) => {
             fontSize='5xl'
             fontWeight='extrabold'
           >
-            THE {props.drinkName}
+            THE {
+              props.drinkName.includes('The') || props.drinkName.includes('A') 
+              ? 
+              props.drinkName.split(' ').slice(1, props.drinkName.split(' ').length).join(' ')
+              : 
+              props.drinkName
+            }
           </Text>
         </Center>
         <Spacer/>

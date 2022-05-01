@@ -10,7 +10,22 @@ interface Ingredients {
 }
 
 const IngredientDisplay = (props: Ingredients) => {
-    
+
+    const createTableFromIngredients = (ingredients) => {
+
+        let tableRows = [];
+        for (const [key, value] of ingredients.entries()) {
+            console.log(key,value)
+            tableRows.push(
+                <Tr>
+                    <Td isNumeric>{value}</Td>
+                    <Td>{key}</Td>
+                </Tr>
+            )
+        }
+        return tableRows
+    }
+
     return(
         <Box p='6' rounded='md' minWidth='230px' borderWidth='1px' borderRadius='lg' overflow='hidden'>
         <Center>
@@ -30,14 +45,7 @@ const IngredientDisplay = (props: Ingredients) => {
                         <Td><SkeletonText mt='4' noOfLines={8} spacing='4' /></Td>
                     </Tr>
                     :
-                    props.ingredients.map(ingredient => {
-                        return(
-                        <Tr>
-                            <Td isNumeric>2 oz</Td>
-                            <Td>{ingredient}</Td>
-                        </Tr>
-                        ) 
-                    })
+                    createTableFromIngredients(props.ingredients)
                 }
                 </Tbody>
             </Table>

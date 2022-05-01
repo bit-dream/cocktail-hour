@@ -8,7 +8,8 @@ spirits = [
     'scotch',
     'rye whiskey',
     'cognac',
-    'brandy'
+    'brandy',
+
 ]
 
 liqueurs = [
@@ -35,7 +36,9 @@ liqueurs = [
     'gimlet',
     'vermouth',
     'espresso liquore',
-    'pisco'
+    'pisco',
+    'aperol'
+    'pimms'
 ]
 
 glasses = [
@@ -74,7 +77,9 @@ sweetners = [
     'maple simple syrup',
     'chardonnay reduction',
     'orgeat',
-    'peanut orgeat'
+    'peanut orgeat',
+    'agave',
+
 ]
 
 toppers = [
@@ -98,7 +103,8 @@ bitters = [
 fragrances = [
     'lemon oil',
     'orange oil',
-    'hickory smoke'
+    'hickory smoke',
+    'applewood smoke'
 ]
 
 spices = [
@@ -119,7 +125,13 @@ fruits = [
     'mint',
     'raspberry',
     'cucumber',
-    'peach'
+    'peach',
+    'lemon',
+    'lime',
+    'strawberry',
+    'blackberry',
+    'blueberry',
+    'blackcurrant'
 ]
 
 optionals = [
@@ -133,5 +145,10 @@ styles = [
     'shaken',
     'stirred',
     'blended'
+]
+
+fruit_style = [
+    'muddled',
+    'juiced'
 ]
 
