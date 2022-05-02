@@ -16,9 +16,9 @@ const CraftDrink: NextPage = ({ message }) => {
   const search = router.query.keywords;
   const drinkName = search ? search.toUpperCase() : '';
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [ingredientsList, setIngredientsList] = useState({});
-  const [instructionsList, setinstructionsList] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [ingredientsList, setIngredientsList] = useState<Map<String,String>>({});
+  const [instructionsList, setinstructionsList] = useState<string[]>([]);
   const toast = useToast();
 
   useEffect(() => {
@@ -28,7 +28,6 @@ const CraftDrink: NextPage = ({ message }) => {
       const response = await fetch(`http://localhost:5000/craftdrink?search=${search}`)
       const json: ApiResponse = await response.json()
       
-      console.log(validateReponse(json),json)
       if (!validateReponse(json)) {
         // Go back home and display error message
         router.push(`/`)

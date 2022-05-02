@@ -10,7 +10,7 @@ import HowToDisplay from '../../components/cocktail_display/HowToDisplay'
 interface CocktailDisplay {
   drinkName: string,
   ingredientHeading: string,
-  ingredients: string[],
+  ingredients: Map<String,String>,
   howToHeading: string,
   howTo: string[],
   btnTxt?: string
@@ -18,6 +18,17 @@ interface CocktailDisplay {
 }
 
 const DisplayCocktail = (props: CocktailDisplay) => { 
+  
+  const createDrinkName = (drinkName: string): string => {
+    if (drinkName.split(' ').length === 1) {
+      return 'THE ' + drinkName
+      // if first word is the or a we need to remove it since drink name starts with The
+    } else if (drinkName.split(' ')[0].includes('The') || drinkName.split(' ')[0].includes('A') ) {
+      return 'THE ' + drinkName.split(' ').slice(1, drinkName.split(' ').length).join(' ')
+    } else {
+      return 'THE ' + drinkName
+    }
+  }
 
   return(
     <Container maxW='1000px' boxShadow='dark-lg' p='6' rounded='md' bg='white'>
@@ -32,13 +43,7 @@ const DisplayCocktail = (props: CocktailDisplay) => {
             fontSize='5xl'
             fontWeight='extrabold'
           >
-            THE {
-              props.drinkName.includes('The') || props.drinkName.includes('A') 
-              ? 
-              props.drinkName.split(' ').slice(1, props.drinkName.split(' ').length).join(' ')
-              : 
-              props.drinkName
-            }
+            {createDrinkName(props.drinkName)}
           </Text>
         </Center>
         <Spacer/>
