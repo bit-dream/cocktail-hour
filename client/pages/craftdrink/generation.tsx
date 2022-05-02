@@ -79,3 +79,16 @@ export const generateIngredientsList = (ingredients: string[]) => {
 
   return ingredientsMap
 }
+
+
+export const validateReponse = (json: ApiResponse): boolean => {
+
+  let validRes = false;
+  for (const [key,value] of Object.entries(json)) {
+    if (value !== null) {
+      validRes = true
+    }
+  }
+  return validRes;
+
+}

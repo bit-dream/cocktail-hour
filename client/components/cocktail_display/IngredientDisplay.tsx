@@ -12,10 +12,8 @@ interface Ingredients {
 const IngredientDisplay = (props: Ingredients) => {
 
     const createTableFromIngredients = (ingredients) => {
-
         let tableRows = [];
         for (const [key, value] of ingredients.entries()) {
-            console.log(key,value)
             tableRows.push(
                 <Tr>
                     <Td isNumeric>{value}</Td>

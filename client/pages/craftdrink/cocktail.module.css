@@ -1,0 +1,19 @@
+.shaker {
+    width: 100px;
+    animation: shake 0.4s infinite ease-in
+}
+
+@keyframes shake {
+    100% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-35deg);
+    }
+    25% {
+        transform: rotate(35deg);
+    }
+    0% {
+        transform: rotate(0deg);
+    }
+}
