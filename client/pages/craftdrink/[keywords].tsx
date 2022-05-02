@@ -33,10 +33,9 @@ const CraftDrink: NextPage = ({ message }) => {
         router.push(`/`)
         toast({
           title: 'oops!',
-          description: `Looks like we couldn't find a cocktail for you. Try again with a different keyword. We've logged the error and will make sure if it was a valid request to.
-          If it is we will fix it.`,
+          description: `Looks like we couldn't find a cocktail for you. Try again with different keywords. We've logged the error to determine the validity of the request.`,
           status: 'error',
-          duration: 3000,
+          duration: 10000,
           isClosable: true,
         })
       }

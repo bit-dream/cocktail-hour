@@ -18,6 +18,7 @@ import { Search2Icon } from '@chakra-ui/icons'
 import { VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import logo from '../../public/logo.jpg'
 
 /* Define interface for passed props */
 interface SearchProps {
@@ -52,9 +53,7 @@ const CocktailSearch = (props: SearchProps) => {
             >
             <Spacer/>
             <Center>
-                <Box boxSize='40px'>
-                    <Image src='' alt='Dan Abramov' />
-                </Box>
+            <Image width={75} alt='logo' src='/logo.jpg'/>
                 <Text
                     bgGradient='linear(to-l, #7928CA, #FF0080)'
                     bgClip='text'
@@ -71,7 +70,6 @@ const CocktailSearch = (props: SearchProps) => {
             </Text>
             <Center>
             <FormControl isRequired>
-                <FormLabel htmlFor='search'>Search Text</FormLabel>
                 <InputGroup>
                 <InputLeftElement
                     pointerEvents='none'
