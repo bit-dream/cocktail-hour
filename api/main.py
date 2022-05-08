@@ -2,7 +2,7 @@ import flask, json
 from flask import request
 from cocktail_creator import generate_drink_recipe
 from spotify_service import Spotify
-from secrets import client_id, client_secret
+from api_secrets import client_id, client_secret
 
 app = flask.Flask(__name__)
 

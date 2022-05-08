@@ -1,4 +1,4 @@
-FROM node:10.16.0-alpine
+FROM node:16.15.0-alpine
 
 WORKDIR usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
@@ -9,4 +9,4 @@ COPY package.json /usr/src/app/package.json
 RUN npm install
 
 EXPOSE 3000
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]

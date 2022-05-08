@@ -1,7 +1,5 @@
 import spacy
 from cocktail import spirits, liqueurs, garnishes, sweetners, bitters, optionals, toppers, spices, fruits, fragrances, glasses, styles
-from spotify_service import Spotify
-from secrets import client_id, client_secret
 
 nlp = spacy.load('en_core_web_md')
 
@@ -105,16 +103,3 @@ def generate_drink_recipe(genres: list) -> dict:
         'style': style
     }
 
-
-if __name__ == '__main__':
-
-    spotify = Spotify(client_id,client_secret)
-
-    search = "Marshmello"
-    keywords = spotify.get_genres_from_keywords(search)
-    print(keywords)
-    if not keywords:
-        keywords = [search]
-
-    receipe = generate_drink_recipe(keywords)
-    print(receipe)

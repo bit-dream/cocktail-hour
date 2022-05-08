@@ -22,3 +22,19 @@ services:
       - 8080:8080
     depends_on:
       - api
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - './client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_SERVICE_URL=http://localhost:8080
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api

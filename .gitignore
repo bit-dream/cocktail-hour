@@ -5,6 +5,7 @@ pyvenv.cfg
 __pycache__
 
 secrets.py
+api_secrets.py
 
 /node_modules
 /.pnp
