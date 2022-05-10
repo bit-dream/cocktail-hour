@@ -1,23 +1,22 @@
 import type { NextPage } from 'next'
-import { Flex, ScaleFade} from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router';
-import CocktailSearch from '../components/search/CocktailSearch';
+import SplitScreen from '../components/landing/SplitScreen';
+import DividedWithImageLayout from '../components/layout/DividedWithImageLayout';
+import IngredientDisplay from '../components/cocktail_display/IngredientDisplay';
+import Main from '../components/home/Main';
+import SideImage from '../components/home/SideImage';
+import BuyMeACoffee from '../components/social/BuyMeACoffee';
 
 const Home: NextPage = () => {
 
-  const [searchText, setSearchText] = useState('');
-  const router = useRouter();
-
   return (
-    <Flex justify='center' align='center' height='100vh'>
-      <ScaleFade initialScale={0.50} in={true}>
-        <CocktailSearch 
-          title = 'Cocktail Hour'
-          description = 'Elevate your next expierence with a specaility crafted cocktail based on your favorite artist, album, mood, or event'
-        />
-      </ScaleFade>
-    </Flex>
+    <div>
+      <DividedWithImageLayout 
+        left={<Main />}
+        right={<SideImage />}
+      />
+    </div>
   )
 }
 

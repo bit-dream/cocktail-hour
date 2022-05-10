@@ -7,6 +7,9 @@ import ApiResponse from './interfaces'
 import { generateInstructions, generateIngredientsList, validateReponse } from './generation'
 import cocktailshaker from '../../images/cocktailshaker.svg'
 import CocktailShakerLoader from './CocktailShakerLoader'
+import DividedLayout from '../../components/layout/DividedLayout'
+import Preparation from '../../components/cocktail/Preparation'
+import Ingredients from '../../components/cocktail/Ingredients'
 
 const CraftDrink: NextPage = ({ message }) => {
 
@@ -49,22 +52,21 @@ const CraftDrink: NextPage = ({ message }) => {
   }, [])
 
   return (
-    <Flex justify='center' align='center' height='100vh'>
+    <div>
       {isLoading ? 
         <CocktailShakerLoader />
         : 
         <ScaleFade initialScale={0.50} in={true}>
-        <DisplayCocktail
-          drinkName = {drinkName}
-          ingredientHeading = ""
-          ingredients = {ingredientsList}
-          howToHeading = 'Preparation'
-          howTo = {instructionsList}
-          isLoading = {isLoading}
+        <DividedLayout
+          left={<Preparation 
+                  cocktailName={drinkName}
+                  directions={instructionsList}/>}
+          right={<Ingredients 
+                  ingredients={ingredientsList}/>} 
         />
       </ScaleFade>
       }
-    </Flex>
+    </div>
   )
 }
 
