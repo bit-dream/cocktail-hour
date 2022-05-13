@@ -63,6 +63,8 @@ const CraftDrink: NextPage = ({ message }) => {
                   directions={instructionsList}/>}
           right={<Ingredients 
                   ingredients={ingredientsList}/>} 
+          image={'/DirtyMartiniCocktail.svg'}
+          gradient={['#c9d6ff', '#ffffff']}
         />
       </ScaleFade>
       }

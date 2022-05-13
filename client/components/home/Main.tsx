@@ -4,7 +4,7 @@ import BuyMeACoffee from "../social/BuyMeACoffee"
 
 const Main = () => {
     return(
-        <div>
+        <Box>
             <Heading fontSize={{ base: '4xl', md: '5xl', lg: '5xl' }}>
                 <Center>
                 <Box w={{ base: "100%", sm: "60%", md: "50%" }} maxWidth={150} mb={{ base: 12, md: 0, sm: 0 }}>
@@ -34,14 +34,15 @@ const Main = () => {
                 <br />
                 {' '}
             </Heading>
-            <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'} textAlign='center'>
-                It's simple. Enter a favorite artist, album, life event, or mood and we'll try to generate something unique for the occasion.
-            </Text>
-            <br />
             <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                 <SimpleSearch />
             </Stack>
-        </div>
+            <br />
+            <Text fontSize={{ base: 'xs', lg: 'xs' }} color={'gray.500'} textAlign='center'>
+                It's simple. Enter a favorite artist, album, life event, or mood and we'll try to generate something unique for the occasion.
+            </Text>
+            
+        </Box>
     )
 }
 

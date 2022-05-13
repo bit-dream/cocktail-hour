@@ -19,18 +19,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         body: {
           //bgGradient: gradient
           height: '100vh',
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'hsla(0,100%,50%,1)',
-          backgroundImage: `
-          radial-gradient(at 40% 20%, hsla(331,100%,74%,1) 0px, transparent 50%),
-          radial-gradient(at 79% 0%, hsla(247,100%,73%,1) 0px, transparent 50%),
-          radial-gradient(at 0% 50%, hsla(298,100%,93%,1) 0px, transparent 50%),
-          radial-gradient(at 80% 50%, hsla(283,100%,76%,1) 0px, transparent 50%),
-          radial-gradient(at 0% 100%, hsla(325,100%,77%,1) 0px, transparent 50%),
-          radial-gradient(at 80% 100%, hsla(185,100%,70%,1) 0px, transparent 50%),
-          radial-gradient(at 0% 0%, hsla(286,100%,76%,1) 0px, transparent 50%);
-          `,
+          //backgroundAttachment: 'fixed',
+          //backgroundRepeat: 'no-repeat',
+          //backgroundColor: 'hsla(0,100%,50%,1)',
+          //backgroundImage: `
+          //radial-gradient(at 40% 20%, hsla(331,100%,74%,1) 0px, transparent 50%),
+          //radial-gradient(at 79% 0%, hsla(247,100%,73%,1) 0px, transparent 50%),
+          //radial-gradient(at 0% 50%, hsla(298,100%,93%,1) 0px, transparent 50%),
+          //radial-gradient(at 80% 50%, hsla(283,100%,76%,1) 0px, transparent 50%),
+          //radial-gradient(at 0% 100%, hsla(325,100%,77%,1) 0px, transparent 50%),
+          //radial-gradient(at 80% 100%, hsla(185,100%,70%,1) 0px, transparent 50%),
+          //radial-gradient(at 0% 0%, hsla(286,100%,76%,1) 0px, transparent 50%);
+          //`,
         }
       }
     }

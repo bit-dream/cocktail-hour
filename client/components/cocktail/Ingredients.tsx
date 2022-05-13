@@ -1,4 +1,5 @@
-import { Box, Center, TableContainer, Table, TableCaption, Thead, Tr, Th, Td, Tbody } from "@chakra-ui/react"
+import { Box, Center, TableContainer, Table, TableCaption, Thead, Tr, Th, Td, Tbody, Image } from "@chakra-ui/react"
+import { url } from "inspector";
 
 interface Ingredients {
     ingredients: string[]
@@ -20,7 +21,24 @@ const Ingredients = (props: Ingredients) => {
     }
 
     return(
-        <Box p='6' rounded='md' minWidth='230px' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box 
+            p='6' 
+            rounded='md' 
+            minWidth='230px' 
+            borderWidth='1px'
+            borderColor='gray.400'
+            borderRadius='lg'
+            overflow='hidden'
+            position={'relative'} 
+            background={'white'}
+            boxShadow={`
+                7px 20px 30px 0px rgba(207, 119, 243, 0.3), 
+                -20px -14px 50px 0px rgba(0, 155, 255, 0.3), 
+                -20px 5px 30px 0px rgba(42, 201, 219, 0.3), 
+                20px -10px 30px 0px rgba(66, 245, 215, 0.3), 
+                10px -20px 30px 0px rgba(255, 5, 134, 0.3);
+            `}
+        >
         <Center>
         <TableContainer>
             <Table size='sm' variant='unstyled'>

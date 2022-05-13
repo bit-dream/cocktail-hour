@@ -12,7 +12,7 @@ import {
     FormLabel,
     useToast,
     Box,
-    Image 
+    Image, Icon, useColorModeValue, createIcon 
 } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 import { VStack } from '@chakra-ui/react'
@@ -40,7 +40,20 @@ const SimpleSearch = () => {
     }}
 
     return (
-        <Container maxW='container.sm' boxShadow='dark-lg' p='3' rounded='md' bg='white'>
+        <Container 
+            maxW='container.sm'
+            p='3' 
+            rounded='md'
+            border={'1px solid #bebebe'} 
+            bg='white'
+            boxShadow={`
+                7px 20px 30px 0px rgba(207, 119, 243, 0.2), 
+                -20px -14px 50px 0px rgba(0, 155, 255, 0.2), 
+                -20px 5px 30px 0px rgba(42, 201, 219, 0.2), 
+                20px -10px 30px 0px rgba(66, 245, 215, 0.2), 
+                10px -20px 30px 0px rgba(255, 5, 134, 0.2);
+            `}
+            >
             <FormControl isRequired>
                 <InputGroup>
                 <InputLeftElement
@@ -69,5 +82,4 @@ const SimpleSearch = () => {
         </Container>
     )
 }
-
 export default SimpleSearch

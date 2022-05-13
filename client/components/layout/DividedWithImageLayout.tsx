@@ -15,7 +15,12 @@ interface DividedLayout {
 const DividedWithImageLayout = (props: DividedLayout) =>{
   return (
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
-      <Flex p={8} flex={1} align={'center'} justify={'center'}>
+      <Flex p={8} flex={1} align={'center'} justify={'center'} background={[
+          'linear-gradient(to bottom, #c9d6ff, #ffffff)',
+          'linear-gradient(to bottom, #c9d6ff, #ffffff)', 
+          'linear-gradient(to right, #c9d6ff, #ffffff)', 
+          'linear-gradient(to right, #c9d6ff, #ffffff)',
+        ]}>
         <Stack spacing={6} w={'full'} maxW={'lg'}>
           {props.left}
         </Stack>
