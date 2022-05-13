@@ -1,17 +1,16 @@
 import type { NextPage } from 'next'
-import {Flex, ScaleFade, useToast } from '@chakra-ui/react'
+import { ScaleFade, useToast, Box, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import DisplayCocktail from '../../components/cocktail_display/DisplayCocktail'
 import { useEffect, useState } from 'react'
 import ApiResponse from './interfaces'
 import { generateInstructions, generateIngredientsList, validateReponse } from './generation'
-import cocktailshaker from '../../images/cocktailshaker.svg'
 import CocktailShakerLoader from './CocktailShakerLoader'
 import DividedLayout from '../../components/layout/DividedLayout'
 import Preparation from '../../components/cocktail/Preparation'
 import Ingredients from '../../components/cocktail/Ingredients'
+import BuyMeACoffee from '../../components/social/BuyMeACoffee'
 
-const CraftDrink: NextPage = ({ message }) => {
+const CraftDrink: NextPage = () => {
 
 
   // Get router keywords from url
@@ -52,23 +51,53 @@ const CraftDrink: NextPage = ({ message }) => {
   }, [])
 
   return (
-    <div>
+    <Box>
       {isLoading ? 
-        <CocktailShakerLoader />
-        : 
-        <ScaleFade initialScale={0.50} in={true}>
-        <DividedLayout
-          left={<Preparation 
-                  cocktailName={drinkName}
-                  directions={instructionsList}/>}
-          right={<Ingredients 
-                  ingredients={ingredientsList}/>} 
-          image={'/DirtyMartiniCocktail.svg'}
+        <CocktailShakerLoader 
           gradient={['#c9d6ff', '#ffffff']}
         />
+        : 
+        <ScaleFade initialScale={0.50} in={true}>
+        <Box position={'relative'}>
+          <BuyMeACoffee />
+          <DividedLayout
+            left={<Preparation 
+                    cocktailName={drinkName}
+                    directions={instructionsList}/>}
+            right={
+                    <Box>
+                      <Ingredients 
+                      ingredients={ingredientsList}/>
+                      <br />
+                      <Button 
+                        width={'100%'}
+                        variant='outline'
+                        colorScheme= 'blue'
+                        boxShadow= '0px 0px 10px 0px rgba(0,0,0,0.2)'
+                        onClick={() => {router.push('/')}}
+                        _hover={{
+                          boxShadow: `
+                            7px 20px 20px 0px rgba(207, 119, 243, 0.3), 
+                            -20px -14px 30px 0px rgba(0, 155, 255, 0.3), 
+                            -20px 5px 20px 0px rgba(42, 201, 219, 0.3), 
+                            20px -10px 20px 0px rgba(66, 245, 215, 0.3), 
+                            10px -20px 20px 0px rgba(255, 5, 134, 0.3);
+                        `
+                        }}
+                        >
+                        Craft Another Drink
+                      </Button>
+                      <br />
+                      <br />
+                    </Box>
+                  } 
+            image={'/CaipirinhaCocktail.svg'}
+            gradient={['#c9d6ff', '#ffffff']}
+          />
+        </Box>
       </ScaleFade>
       }
-    </div>
+    </Box>
   )
 }
 

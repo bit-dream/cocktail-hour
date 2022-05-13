@@ -1,13 +1,14 @@
 import { Box, Center, TableContainer, Table, TableCaption, Thead, Tr, Th, Td, Tbody, Image } from "@chakra-ui/react"
 import { url } from "inspector";
+import Twitter from "../social/Twitter";
 
 interface Ingredients {
-    ingredients: string[]
+    ingredients: Map<String,String>
 }
 
 const Ingredients = (props: Ingredients) => {
 
-    const createTableFromIngredients = (ingredients) => {
+    const createTableFromIngredients = (ingredients: Map<String,String>) => {
         let tableRows = [];
         for (const [key, value] of ingredients.entries()) {
             tableRows.push(
@@ -40,6 +41,7 @@ const Ingredients = (props: Ingredients) => {
             `}
         >
         <Center>
+        <Twitter />
         <TableContainer>
             <Table size='sm' variant='unstyled'>
                 <TableCaption>What You'll Need</TableCaption>

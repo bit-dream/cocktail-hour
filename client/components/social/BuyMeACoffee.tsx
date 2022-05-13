@@ -8,8 +8,8 @@ const BuyMeACoffee = () => {
             leftIcon='☕' 
             colorScheme='yellow'
             position={'absolute'}
-            bottom = {3}
             left = {3}
+            bottom = {3}
             maxW={150}>
               Buy me a coffee
           </Button>

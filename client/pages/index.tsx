@@ -7,16 +7,18 @@ import IngredientDisplay from '../components/cocktail_display/IngredientDisplay'
 import Main from '../components/home/Main';
 import SideImage from '../components/home/SideImage';
 import BuyMeACoffee from '../components/social/BuyMeACoffee';
+import { Box } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
 
   return (
-    <div>
+    <Box position={'relative'}>
+      <BuyMeACoffee />
       <DividedWithImageLayout 
         left={<Main />}
         right={<SideImage />}
       />
-    </div>
+    </Box>
   )
 }
 
