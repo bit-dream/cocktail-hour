@@ -83,6 +83,9 @@ export const generateIngredientsList = (ingredients: string[]) => {
 
 export const validateReponse = (json: ApiResponse): boolean => {
 
+  // Check that we actually received an object
+  if (typeof(json) !== 'object') return false
+
   let validRes = false;
   for (const [key,value] of Object.entries(json)) {
     if (value !== null) {
