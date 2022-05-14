@@ -36,6 +36,10 @@ def craft_drink():
     return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    import os, psutil
+    process = psutil.Process(os.getpid())
+    print(process.memory_info().rss)  # in 
+    app.run(host='0.0.0.0', port='5000', ssl_context='adhoc')
+
     
 

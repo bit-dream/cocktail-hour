@@ -6,6 +6,8 @@ __pycache__
 
 secrets.py
 api_secrets.py
+digital-ocean
+digital-ocean.pub
 
 /node_modules
 /.pnp

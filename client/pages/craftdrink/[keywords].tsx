@@ -27,7 +27,7 @@ const CraftDrink: NextPage = () => {
     // declare the async data fetching function
     const fetchData = async () => {
 
-      const response = await fetch(`http://localhost:5000/craftdrink?search=${search}`)
+      const response = await fetch(`https://localhost:5000/craftdrink?search=${search}`)
       const json: ApiResponse = await response.json()
       
       if (!validateReponse(json)) {
@@ -47,7 +47,17 @@ const CraftDrink: NextPage = () => {
       setIsLoading(false)
     }
     // call the function
-    fetchData().catch(console.error);
+    fetchData().catch(res => {
+      console.log(res)
+      router.push(`/`)
+      toast({
+        title: 'oops!',
+        description: `Something went wrong with the request. This is most likely a network error.`,
+        status: 'error',
+        duration: 10000,
+        isClosable: true,
+      })
+    });
   }, [])
 
   return (
