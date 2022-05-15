@@ -2,13 +2,14 @@ version: '3.7'
 
 services:
   api:
+    container_name: api
     build:
       context: ./api
       dockerfile: Dockerfile
     volumes:
       - './api:/usr/src/app'
     ports:
-      - 5000
+      - 5000:5000
     environment:
       - FLASK_CONFIG=production
       - FLASK_ENV=production
@@ -35,6 +36,7 @@ services:
       - ./data/certbot/www:/var/www/certbot
 
   client:
+    container_name: client
     build:
       context: ./client
       dockerfile: Dockerfile
@@ -42,7 +44,7 @@ services:
       - './client:/usr/src/app'
       - '/usr/src/app/node_modules'
     ports:
-      - 3000
+      - 3000:3000
     environment:
       - NODE_ENV=development
       - REACT_APP_SERVICE_URL=http://localhost:8080
