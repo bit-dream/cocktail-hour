@@ -6,6 +6,10 @@ from api_secrets import client_id, client_secret
 
 app = flask.Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def index():
+    return flask.jsonify('Nothing is here')
+
 @app.route('/craftdrink', methods=['GET'])
 def craft_drink():
     keywords = request.args.getlist('search')
