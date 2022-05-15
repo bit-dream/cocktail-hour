@@ -27,7 +27,13 @@ const CraftDrink: NextPage = () => {
     // declare the async data fetching function
     const fetchData = async () => {
 
-      const response = await fetch(`http:localhost:5000/craftdrink?search=${search}`)
+      const response = await fetch(`http:localhost:5000/craftdrink?search=${search}`,{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+      })
       const json: ApiResponse = await response.json()
       
       if (!validateReponse(json)) {
