@@ -5,7 +5,7 @@ interface Shaker {
     gradient: string[]
 }
 
-const CocktailShakerLoader = (props) => {
+const CocktailShakerLoader = (props: Shaker) => {
     return(
         <Flex 
             justify='center' 
