@@ -33,7 +33,6 @@ def craft_drink():
 
     response = flask.jsonify(receipe)
     response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Content-Type', 'application/json')
     return response
 
 if __name__ == '__main__':
