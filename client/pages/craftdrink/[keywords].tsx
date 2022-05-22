@@ -27,7 +27,7 @@ const CraftDrink: NextPage = () => {
     // declare the async data fetching function
     const fetchData = async () => {
 
-      const response = await fetch(`https:cocktailhour.tk/api/craftdrink?search=${search}`)
+      const response = await fetch(`/v1/api/craftdrink?search=${search}`)
       const json: ApiResponse = await response.json()
       
       if (!validateReponse(json)) {
