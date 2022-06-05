@@ -7,7 +7,7 @@ spirits = {
     'pepper': 'rye whiskey',
     'sugar': 'rum',
     'fruity': 'brandy',
-    'smoke': 'scotch',
+    'smokey': 'scotch',
     'earthy': 'tequila',
     'floral': 'mezcal'
 }
@@ -39,7 +39,9 @@ liqueurs = {
     'grape': 'pisco',
     'rhubarb': 'aperol',
     'apple': 'pimms',
-    'cherry':'luxardo maraschino'
+    'cherry':'luxardo maraschino',
+    'mulled': 'cocchi barolo chinato',
+    'rosemary': 'amaro averna'
 }
 
 glasses = {
@@ -49,8 +51,6 @@ glasses = {
     'strong': 'martini',
     'skinny': 'flute',
     'tropical': 'tiki',
-    'mexico': 'margarita',
-    'sweet': 'daiquiri',
     'old': 'wine'
 }
 
@@ -71,7 +71,8 @@ garnishes = {
     'pineapple':'bruleed pineapple',
     'licorice':'star anise',
     'mint':'mint',
-    'basil':'basil'
+    'basil':'basil',
+    'leaf': 'pineapple leaf'
 }
 
 sweetners = {
@@ -83,9 +84,13 @@ sweetners = {
     'wine':'chardonnay reduction syrup',
     'almond':'orgeat',
     'peanut':'peanut orgeat',
-    'grass':'agave',
+    'cashew':'cashew orgeat',
+    'grass':'agave syrup',
     'cinnamon':'cinnamon simple syrup',
-    'pomegranate':'grenadine'
+    'pomegranate':'grenadine',
+    'gum': 'gum syrup',
+    'ginger': 'ginger syrup',
+    'spicy': 'honey habanero syrup'
 }
 
 fizzes = {
@@ -93,7 +98,8 @@ fizzes = {
     'wine':'prosecco',
     'herbal':'tonic',
     'lime':'sprite',
-    'plain':'seltzer'
+    'plain':'seltzer',
+    'ginger': 'ginger beer'
 }
 
 bitters = {
@@ -110,7 +116,8 @@ bitters = {
     'grapefruit':'grapefruit bitters',
     'lemon':'lemon bitters',
     'plum':'plum bitters',
-    'rhubarb':'rhubarb bitters'
+    'rhubarb':'rhubarb bitters',
+    'dark': 'xocolat bitters',
 }
 
 oils = {
@@ -123,7 +130,7 @@ oils = {
 smokes = {
     'rosemary': 'rosemary smoke',
     'apple': 'applewood smoke',
-    'tea': 'tealeaf smoke',
+    'tea': 'lapsang souchong smoke',
     'hickory': 'hickory smoke',
     'cinnamon': 'cinnamon stick smoke'
 }
@@ -136,7 +143,9 @@ spices = {
     'lime':'lime zest',
     'pepper': 'black pepper',
     'cardamom':'cardamom',
-    'clove':'clove'
+    'clove':'clove',
+    'smoke': 'hawaiian smoked salt',
+    'chinese': 'chinese 5 spice',
 }
 
 fruits = {
@@ -167,4 +176,20 @@ muddlers = {
     'basil':'basil',
     'lime':'lime',
     'lemon':'lemon'
+}
+
+foams = {
+    'egg': 'egg foam',
+    'water': 'aquafaba foam'
+}
+
+ices = {
+    'crush': 'crushed ice',
+    'sphere': 'sphere ice',
+    'cube': 'large cube ice',
+    'small': 'small cubed ice',
+}
+
+infusions = {
+
 }
