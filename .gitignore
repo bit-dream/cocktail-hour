@@ -8,6 +8,7 @@ secrets.py
 api_secrets.py
 digital-ocean
 digital-ocean.pub
+do.ppk
 
 /node_modules
 /.pnp

@@ -9,7 +9,6 @@ spirits = [
     'rye whiskey',
     'cognac',
     'brandy',
-
 ]
 
 liqueurs = [
