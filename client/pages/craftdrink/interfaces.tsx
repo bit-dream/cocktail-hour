@@ -1,13 +1,19 @@
-export default interface ApiResponse {
-    spirit: string,
-    liqueur: string,
-    sweetner: string,
-    bitter: string,
-    style: string,
-    glass: string,
-    garnish: string,
-    fragrance: string,
-    spice: string,
-    fruit: string,
-    topper: string
-}
+type CocktailData = {
+    bitter: string | null,
+    fizz: string | null,
+    foam: string | null,
+    fruit: string | null,
+    garnish: string | null,
+    glass: string | null,
+    ice: string | null,
+    liqueur: string | null,
+    muddle: string | null,
+    oil: string | null,
+    smoke: string | null,
+    sour: string | null,
+    spice: string | null,
+    spirit: string | null,
+    sweetener: string | null,
+    type: string | null
+};
+export default CocktailData;

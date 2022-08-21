@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { ScaleFade, useToast, Box, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import ApiResponse from './interfaces'
+import CocktailData from './interfaces'
 import { generateInstructions, generateIngredientsList, validateReponse } from './generation'
 import CocktailShakerLoader from './CocktailShakerLoader'
 import DividedLayout from '../../components/layout/DividedLayout'
@@ -16,6 +16,7 @@ const CraftDrink: NextPage = () => {
   // Get router keywords from url
   const router = useRouter();
   const search = router.query.keywords;
+  const configUrl = process.env.NEXT_PUBLIC_CONFIG_URL;
   const drinkName = search ? search.toUpperCase() : '';
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -27,9 +28,10 @@ const CraftDrink: NextPage = () => {
     // declare the async data fetching function
     const fetchData = async () => {
 
-      const response = await fetch(`/v1/api/craftdrink?search=${search}`)
-      const json: ApiResponse = await response.json()
-      
+      console.log('Formed URL:', `${configUrl}${search}`)
+      const response = await fetch(`${configUrl}${search}`)
+      const json: CocktailData = await response.json()
+      console.log(json)
       if (!validateReponse(json)) {
         // Go back home and display error message
         router.push(`/`)
