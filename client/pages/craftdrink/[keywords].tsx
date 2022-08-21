@@ -12,7 +12,6 @@ import BuyMeACoffee from '../../components/social/BuyMeACoffee'
 
 const CraftDrink: NextPage = () => {
 
-
   // Get router keywords from url
   const router = useRouter();
   const search = router.query.keywords;
