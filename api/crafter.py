@@ -8,7 +8,7 @@ from api_secrets import client_id, client_secret
 
 # Main load from spacy so similarity can be calculated
 nlp = spacy.load('en_core_web_md')
-spotify = Spotify(client_id,client_secret)
+#spotify = Spotify(client_id,client_secret)
 
 def similarity(item1,item2) -> float:
     return nlp(item1).similarity(nlp(item2))
@@ -63,7 +63,7 @@ def style_of_drink(keywords: str) -> str:
 def drink_complexity(keywords: str) -> bool:
     pass
 
-def craft_drink(keywords: str) -> dict:
+def generate_drink(keywords: str) -> dict:
 
     # Initialize drink recipe
     drink = {
@@ -90,7 +90,8 @@ def craft_drink(keywords: str) -> dict:
         drink_keywords = keywords
     else:
         print(f'{keywords} does not exist in spacy')
-        drink_keywords = spotify.get_genres_from_keywords(keywords)[0]
+        #drink_keywords = spotify.get_genres_from_keywords(keywords)[0]
+        drink_keywords = 'ok'
 
     # Determine style of drink
     style = style_of_drink(drink_keywords)

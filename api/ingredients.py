@@ -49,9 +49,7 @@ glasses = {
     'tall': 'highball',
     'classic': 'old fashioned',
     'strong': 'martini',
-    'skinny': 'flute',
-    'tropical': 'tiki',
-    'old': 'wine'
+    'tropical': 'tiki'
 }
 
 garnishes = {
