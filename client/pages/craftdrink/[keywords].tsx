@@ -9,6 +9,7 @@ import DividedLayout from '../../components/layout/DividedLayout'
 import Preparation from '../../components/cocktail/Preparation'
 import Ingredients from '../../components/cocktail/Ingredients'
 import BuyMeACoffee from '../../components/social/BuyMeACoffee'
+import Contact from '../../components/contact/Contact'
 
 const CraftDrink: NextPage = () => {
 
@@ -21,16 +22,35 @@ const CraftDrink: NextPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [ingredientsList, setIngredientsList] = useState<Map<String,String>>({});
   const [instructionsList, setinstructionsList] = useState<string[]>([]);
+  const [glassImage, setGlassImage] = useState<string>('/CaipirinhaCocktail.svg');
   const toast = useToast();
 
   useEffect(() => {
     // declare the async data fetching function
     const fetchData = async () => {
 
-      console.log('Formed URL:', `${configUrl}${search}`)
       const response = await fetch(`${configUrl}${search}`)
       const json: CocktailData = await response.json()
-      console.log(json)
+
+      // Set cocktail image
+      switch (json['glass']) {
+        case 'martini':
+          setGlassImage('/KamikazeCocktail.svg');
+          break;
+        case 'coupe':
+          setGlassImage('/MargaritaCocktail.svg');
+          break;
+        case 'highball':
+          setGlassImage('/MojitoCocktail.svg');
+          break;
+        case 'old fashioned':
+          setGlassImage('/ScrewdriverCocktail.svg');
+          break;
+        case 'tiki':
+          setGlassImage('/CaipirinhaCocktail.svg');
+          break;
+      }
+
       if (!validateReponse(json)) {
         // Go back home and display error message
         router.push(`/`)
@@ -102,7 +122,7 @@ const CraftDrink: NextPage = () => {
                       <br />
                     </Box>
                   } 
-            image={'/CaipirinhaCocktail.svg'}
+            image={glassImage}
             gradient={['#c9d6ff', '#ffffff']}
           />
         </Box>

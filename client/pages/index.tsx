@@ -8,12 +8,14 @@ import Main from '../components/home/Main';
 import SideImage from '../components/home/SideImage';
 import BuyMeACoffee from '../components/social/BuyMeACoffee';
 import { Box } from '@chakra-ui/react';
+import Contact from '../components/contact/Contact';
 
 const Home: NextPage = () => {
 
   return (
     <Box position={'relative'}>
       <BuyMeACoffee />
+      <Contact />
       <DividedWithImageLayout 
         left={<Main />}
         right={<SideImage />}
