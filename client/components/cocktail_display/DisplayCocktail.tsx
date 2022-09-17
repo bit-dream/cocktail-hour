@@ -10,7 +10,7 @@ import HowToDisplay from '../../components/cocktail_display/HowToDisplay'
 interface CocktailDisplay {
   drinkName: string,
   ingredientHeading: string,
-  ingredients: Map<String,String>,
+  ingredients: Map<string,string>,
   howToHeading: string,
   howTo: string[],
   btnTxt?: string

@@ -44,7 +44,7 @@ const Ingredients = (props: Ingredients) => {
         <Twitter />
         <TableContainer>
             <Table size='sm' variant='unstyled'>
-                <TableCaption>What You'll Need</TableCaption>
+                <TableCaption>What You&apos;ll Need</TableCaption>
                 <Thead>
                 <Tr>
                     <Th></Th>

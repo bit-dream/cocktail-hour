@@ -2,9 +2,9 @@ import type { NextPage } from 'next'
 import { ScaleFade, useToast, Box, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import CocktailData from './interfaces'
-import { generateInstructions, generateIngredientsList, validateReponse } from './generation'
-import CocktailShakerLoader from './CocktailShakerLoader'
+import CocktailData from '../../components/interfaces'
+import { generateInstructions, generateIngredientsList, validateReponse } from '../../components/generation'
+import CocktailShakerLoader from '../../components/cocktail_display/CocktailShakerLoader'
 import DividedLayout from '../../components/layout/DividedLayout'
 import Preparation from '../../components/cocktail/Preparation'
 import Ingredients from '../../components/cocktail/Ingredients'
@@ -17,10 +17,15 @@ const CraftDrink: NextPage = () => {
   const router = useRouter();
   const search = router.query.keywords;
   const configUrl = process.env.NEXT_PUBLIC_CONFIG_URL;
-  const drinkName = search ? search.toUpperCase() : '';
+  let drinkName: string; 
+  if (Array.isArray(search)) {
+    drinkName = search.join(' ').toUpperCase();
+  } else {
+    drinkName = search ? search.toUpperCase() : '';
+  }
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [ingredientsList, setIngredientsList] = useState<Map<String,String>>({});
+  const [ingredientsList, setIngredientsList] = useState<Map<String,String>>(new Map());
   const [instructionsList, setinstructionsList] = useState<string[]>([]);
   const [glassImage, setGlassImage] = useState<string>('/CaipirinhaCocktail.svg');
   const toast = useToast();
@@ -79,7 +84,7 @@ const CraftDrink: NextPage = () => {
         isClosable: true,
       })
     });
-  }, [])
+  })
 
   return (
     <Box>

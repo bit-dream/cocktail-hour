@@ -57,9 +57,9 @@ const SimpleSearch = () => {
             <FormControl isRequired>
                 <InputGroup>
                 <InputLeftElement
-                    pointerEvents='none'
-                    children={<Search2Icon color='gray.300' />}
-                />
+                    pointerEvents='none'>
+                        {<Search2Icon color='gray.300' />}
+                </InputLeftElement>
                 <Input 
                     id='search'
                     type='search' 

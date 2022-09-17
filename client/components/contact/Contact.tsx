@@ -15,17 +15,17 @@ import {
     FormErrorMessage,
     FormHelperText,
 } from '@chakra-ui/react'
-import { useState } from "react"
+import { SetStateAction, useState } from "react"
 
 const Contact = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [input, setInput] = useState('')
-    const handleInputChange = (e) => setInput(e.target.value)
+    const handleInputChange = (e: { target: { value: SetStateAction<string> } }) => setInput(e.target.value)
     const isError = input === ''
 
     let [messageValue, setMessageValue] = useState('')
 
-    let handleMessageInputChange = (e) => {
+    let handleMessageInputChange = (e: { target: { value: any } }) => {
         let inputValue = e.target.value
         setMessageValue(inputValue)
     }
@@ -61,7 +61,7 @@ const Contact = () => {
                 />
                 {!isError ? (
                     <FormHelperText>
-                    We don't store your email, we only use it to send your comments to us
+                    We don&apos;t store your email, we only use it to send your comments to us
                     </FormHelperText>
                 ) : (
                     <FormErrorMessage>Email is required.</FormErrorMessage>

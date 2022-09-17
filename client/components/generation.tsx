@@ -108,24 +108,21 @@ export const generateInstructions = (data: CocktailData): string[] => {
   return instructions
 }
 
-export const generateIngredientsList = (ingredients: string[]) => {
+export const generateIngredientsList = (ingredients: CocktailData) => {
 
   let ingredientsMap = new Map()
 
   for (const [key, value] of Object.entries(ingredients)) {
-    if (key === 'glass' || key === 'fragrance') {
-      continue
-    } else {
-      if (key === 'type' || value === 'blend'){ingredientsMap.set('ice', '1 cup')}
-      if (key === 'spirit' && value !== null) {ingredientsMap.set(value, '2 oz')}
-      if (key === 'liqueur' && value !== null) {ingredientsMap.set(value, '0.75 oz')}
-      if (key === 'sweetner' && value !== null) {ingredientsMap.set(value, '1 oz')}
-      if (key === 'spice' && value !== null) {ingredientsMap.set(value, '0.35 g')}
-      if (key === 'fizz' && value !== null) {ingredientsMap.set(value, '1/5 oz')}
-      if (key === 'bitter' && value !== null) {ingredientsMap.set(value, '2 dashes')}
-      if (key === 'fruit' && value !== null) {ingredientsMap.set(value , '1')}
-      if (key === 'garnish' && value !== null) {ingredientsMap.set(value , '1')}
-    }
+    if (key === 'type' && value === 'blend'){ingredientsMap.set('ice', '1 cup')}
+    if (key === 'spirit' && value !== null) {ingredientsMap.set(value, '2 part')}
+    if (key === 'liqueur' && value !== null) {ingredientsMap.set(value, '1 part')}
+    if (key === 'sweetener' && value !== null) {ingredientsMap.set(value, '1 part')}
+    if (key === 'spice' && value !== null) {ingredientsMap.set(value, '1 pinch')}
+    if (key === 'fizz' && value !== null) {ingredientsMap.set(value, '1/2 part')}
+    if (key === 'bitter' && value !== null) {ingredientsMap.set(value, '2 dashes')}
+    if (key === 'fruit' && value !== null) {ingredientsMap.set(value , '-')}
+    if (key === 'garnish' && value !== null) {ingredientsMap.set(value , '-')}
+    if (key === 'glass' && value !== null) {ingredientsMap.set(value , 'glass')}
   }
 
   return ingredientsMap

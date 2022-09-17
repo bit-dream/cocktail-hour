@@ -5,7 +5,6 @@ const BuyMeACoffee = () => {
     return(
           <Button 
             size='sm' 
-            leftIcon='☕' 
             colorScheme='yellow'
             position={'absolute'}
             left = {3}

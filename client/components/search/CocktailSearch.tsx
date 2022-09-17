@@ -73,8 +73,9 @@ const CocktailSearch = (props: SearchProps) => {
                 <InputGroup>
                 <InputLeftElement
                     pointerEvents='none'
-                    children={<Search2Icon color='gray.300' />}
-                />
+                >
+                    {<Search2Icon color='gray.300' />}
+                </InputLeftElement>
                 <Input 
                     id='search'
                     type='search' 

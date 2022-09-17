@@ -4,14 +4,14 @@ import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 import { HStack, Center, TableContainer, Table, Thead, Tr, Th, Td, Tbody, TableCaption } from '@chakra-ui/react'
 
 interface Ingredients {
-    ingredients: string[],
+    ingredients: Map<string,string>,
     heading: string,
     isLoading: boolean
 }
 
 const IngredientDisplay = (props: Ingredients) => {
 
-    const createTableFromIngredients = (ingredients) => {
+    const createTableFromIngredients = (ingredients: Map<string,string>) => {
         let tableRows = [];
         for (const [key, value] of ingredients.entries()) {
             tableRows.push(
@@ -29,7 +29,7 @@ const IngredientDisplay = (props: Ingredients) => {
         <Center>
         <TableContainer>
             <Table size='sm' variant='unstyled'>
-                <TableCaption>What You'll Need</TableCaption>
+                <TableCaption>What You&apos;ll Need</TableCaption>
                 <Thead>
                 <Tr>
                     <Th></Th>

@@ -29,35 +29,23 @@ const DividedLayout = (props: DividedLayout) =>{
       </Flex>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={6} w={'full'} maxW={'lg'} position='relative'
-        _after={[{
-          content: `""`,
-          position: 'absolute',
-          width: '115px',
-          height: '115px',
-          left: '-30px',
-          top: '-50px',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundImage: `url('${props.image}')`,
-          transform: 'rotate(-10deg)',
-          filter: 'drop-shadow(5px 5px 8px #222)',
-          marginLeft: '10px'
-        },
-        {
-          content: `""`,
-          position: 'absolute',
-          width: '150px',
-          height: '150px',
-          left: '-30px',
-          top: '-50px',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundImage: `url('${props.image}')`,
-          transform: 'rotate(-10deg)',
-          filter: 'drop-shadow(5px 5px 8px #222)',
-          marginLeft: '10px'
+        _after={
+          {
+            content: `""`,
+            position: 'absolute',
+            width: '115px',
+            height: '115px',
+            left: '-30px',
+            top: '-50px',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundImage: `url('${props.image}')`,
+            transform: 'rotate(-10deg)',
+            filter: 'drop-shadow(5px 5px 8px #222)',
+            marginLeft: '10px'
+          }
         }
-      ]}>
+        >
           {props.right}
         </Stack>
       </Flex>

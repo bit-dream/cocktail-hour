@@ -15,7 +15,7 @@ const HowToDisplay = (props: HowTo) => {
             {props.isLoading ? 
                 <ListItem><SkeletonText mt='4' noOfLines={8} spacing='4' /></ListItem>
                 :
-                props.directions.map(direction => <ListItem>{direction}</ListItem>)
+                props.directions.map((direction, index) => <ListItem key={index}>{direction}</ListItem>)
             }
           </OrderedList>
         </Box>

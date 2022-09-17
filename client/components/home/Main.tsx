@@ -39,7 +39,7 @@ const Main = () => {
             </Stack>
             <br />
             <Text fontSize={{ base: 'xs', lg: 'xs' }} color={'gray.500'} textAlign='center'>
-                It's simple. Enter a favorite artist, album, life event, or mood and we'll try to generate something unique for the occasion.
+                It&apos;s simple. Enter a favorite artist, album, life event, or mood and we&apos;ll try to generate something unique for the occasion.
             </Text>
             
         </Box>

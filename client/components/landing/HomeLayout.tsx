@@ -1,9 +1,10 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, FlexProps, OmitCommonProps } from '@chakra-ui/react'
 import Header from './Header'
 import Footer from "./Footer"
 import Content from './Content'
+import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
-const HomeLayout = (props) => {
+const HomeLayout = (props: JSX.IntrinsicAttributes & OmitCommonProps<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof FlexProps> & FlexProps & { as?: "div" | undefined }) => {
   return (
     <Flex
       direction="column"

@@ -26,7 +26,7 @@ const Preparation = (props: Preparation) => {
             <Heading fontSize='xl'>Preparation</Heading>
             <br/>
             <OrderedList spacing={3}>
-                {props.directions.map(direction => <ListItem>{direction}</ListItem>)}
+                {props.directions.map((direction, index) => <ListItem key={index}>{direction}</ListItem>)}
             </OrderedList>
         </div>
     )
