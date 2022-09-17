@@ -6,19 +6,12 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import { extendTheme } from "@chakra-ui/react"
 import { useEffect, useState } from 'react'
-import '@fontsource/urbanist/500.css'
-import "@fontsource/space-grotesk/700.css"
-import "@fontsource/inter/900.css"
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
   let gradient = `linear(to-r,${'#ee9ca7'},${'#ffdde1'})`
   const theme = extendTheme({
-    fonts: {
-      heading: `'Inter', sans-serif`,
-      body: `'Urbanist', sans-serif`,
-    },
     styles: {
       global: {
         html: {

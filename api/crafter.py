@@ -165,8 +165,6 @@ def generate_drink(keywords: str) -> dict:
         drink['fizz'] = best_choice(drink_keywords,fizzes)
         if drink_has(bitters,drink_keywords):
             drink['bitter'] = best_choice(drink_keywords,bitters)
-        if drink_has(foams,drink_keywords):
-            drink['foam'] = best_choice(drink_keywords,foams)
         if drink_has(ices,drink_keywords):
             drink['ice'] = best_choice(drink_keywords,ices)
     elif style == 'neat':

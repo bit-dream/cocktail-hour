@@ -115,7 +115,7 @@ bitters = {
     'lemon':'lemon bitters',
     'plum':'plum bitters',
     'rhubarb':'rhubarb bitters',
-    'dark': 'xocolat bitters',
+    'cocoa': 'xocolat bitters',
 }
 
 oils = {
@@ -126,7 +126,7 @@ oils = {
 }
 
 smokes = {
-    'rosemary': 'rosemary smoke',
+    'herb': 'rosemary smoke',
     'apple': 'applewood smoke',
     'tea': 'lapsang souchong smoke',
     'hickory': 'hickory smoke',
