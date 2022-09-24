@@ -1,4 +1,3 @@
-from tkinter import S
 from typing import Union
 import spacy
 from ingredients import *
