@@ -103,7 +103,8 @@ const CraftDrink: NextPage = () => {
             right={
                     <Box>
                       <Ingredients 
-                      ingredients={ingredientsList}/>
+                      ingredients={ingredientsList}
+                      drinkName={drinkName}/>
                       <br />
                       <Button 
                         width={'100%'}

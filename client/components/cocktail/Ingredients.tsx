@@ -4,6 +4,7 @@ import Twitter from "../social/Twitter";
 
 interface Ingredients {
     ingredients: Map<String,String>
+    drinkName: string
 }
 
 const Ingredients = (props: Ingredients) => {
@@ -41,7 +42,7 @@ const Ingredients = (props: Ingredients) => {
             `}
         >
         <Center>
-        <Twitter />
+        <Twitter drinkName={props.drinkName} ingredients={props.ingredients}/>
         <TableContainer>
             <Table size='sm' variant='unstyled'>
                 <TableCaption>What You&apos;ll Need</TableCaption>
