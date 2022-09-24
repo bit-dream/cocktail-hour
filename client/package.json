@@ -6,6 +6,7 @@
     "dev": "NEXT_PUBLIC_CONFIG_URL=http://localhost:5000/craftdrink/?keywords= next dev",
     "build": "next build",
     "start": "next start",
+    "go": "next build && next start",
     "lint": "next lint"
   },
   "dependencies": {
