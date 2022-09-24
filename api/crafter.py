@@ -4,7 +4,7 @@ import spacy
 from ingredients import *
 from styles import styles
 from spotify_service import Spotify
-from api_secrets import client_id, client_secret
+from server_secrets import client_id, client_secret
 
 # Main load from spacy so similarity can be calculated
 nlp = spacy.load('en_core_web_md')

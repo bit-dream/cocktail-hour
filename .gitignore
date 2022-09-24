@@ -1,11 +1,15 @@
 # created by virtualenv automatically
 Lib
+bin
 Scripts
 pyvenv.cfg
 __pycache__
 
 secrets.py
 api_secrets.py
+client_secret.json
+gmail_token.json
+server_secrets.py
 digital-ocean
 digital-ocean.pub
 do.ppk
