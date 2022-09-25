@@ -108,8 +108,9 @@ def generate_drink(keywords: str) -> dict:
         drink['garnish'] = best_choice(drink_keywords,garnishes)
         if drink_has(smokes,drink_keywords):
             drink['smoke'] = best_choice(drink_keywords,smokes)
-        if drink_has(ices,drink_keywords):
-            drink['ice'] = best_choice(drink_keywords,ices)
+        if drink['glass'] != 'martini':
+            if drink_has(ices,drink_keywords):
+                drink['ice'] = best_choice(drink_keywords,ices)
     elif style == 'sour':
         drink['glass'] = best_choice(drink_keywords,glasses)
         drink['spirit'] = best_choice(drink_keywords,spirits)
@@ -120,8 +121,9 @@ def generate_drink(keywords: str) -> dict:
             drink['bitter'] = best_choice(drink_keywords,bitters)
         if drink_has(foams,drink_keywords):
             drink['foam'] = best_choice(drink_keywords,foams)
-        if drink_has(ices,drink_keywords):
-            drink['ice'] = best_choice(drink_keywords,ices)
+        if drink['glass'] != 'martini':
+            if drink_has(ices,drink_keywords):
+                drink['ice'] = best_choice(drink_keywords,ices)
     elif style == 'strong':
         drink['glass'] = best_choice(drink_keywords,glasses)
         drink['spirit'] = best_choice(drink_keywords,spirits)
@@ -130,8 +132,9 @@ def generate_drink(keywords: str) -> dict:
         drink['oil'] = best_choice(drink_keywords,oils)
         if drink_has(smokes,drink_keywords):
             drink['smoke'] = best_choice(drink_keywords,smokes)
-        if drink_has(ices,drink_keywords):
-            drink['ice'] = best_choice(drink_keywords,ices)
+        if drink['glass'] != 'martini':
+            if drink_has(ices,drink_keywords):
+                drink['ice'] = best_choice(drink_keywords,ices)
         if drink_has(garnishes,drink_keywords):
             drink['garnish'] = best_choice(drink_keywords,garnishes)
     elif style == 'complex':
@@ -143,7 +146,8 @@ def generate_drink(keywords: str) -> dict:
         drink['oil'] = best_choice(drink_keywords,oils)
         drink['spice'] = best_choice(drink_keywords,spices)
         drink['garnish'] = best_choice(drink_keywords,garnishes, items = how_many_items(drink_keywords))
-        drink['ice'] = best_choice(drink_keywords,ices)
+        if drink['glass'] != 'martini':
+            drink['ice'] = best_choice(drink_keywords,ices)
         if drink_has(smokes,drink_keywords):
             drink['smoke'] = best_choice(drink_keywords,smokes)
     elif style == 'smash':
@@ -153,7 +157,8 @@ def generate_drink(keywords: str) -> dict:
         drink['muddle'] = best_choice(drink_keywords,muddlers)
         drink['garnish'] = best_choice(drink_keywords,garnishes)
         drink['fruit'] = best_choice(drink_keywords,fruits)
-        drink['ice'] = ices['crush']
+        if drink['glass'] != 'martini':
+            drink['ice'] = ices['crush']
     elif style == 'fizz':
         drink['glass'] = best_choice(drink_keywords,glasses)
         drink['spirit'] = best_choice(drink_keywords,spirits)
@@ -163,13 +168,15 @@ def generate_drink(keywords: str) -> dict:
         drink['fizz'] = best_choice(drink_keywords,fizzes)
         if drink_has(bitters,drink_keywords):
             drink['bitter'] = best_choice(drink_keywords,bitters)
-        if drink_has(ices,drink_keywords):
-            drink['ice'] = best_choice(drink_keywords,ices)
+        if drink['glass'] != 'martini':
+            if drink_has(ices,drink_keywords):
+                drink['ice'] = best_choice(drink_keywords,ices)
     elif style == 'neat':
         drink['glass'] = best_choice(drink_keywords,glasses)
         drink['spirit'] = best_choice(drink_keywords,spirits)
-        if drink_has(ices,drink_keywords):
-            drink['ice'] = best_choice(drink_keywords,ices)
+        if drink['glass'] != 'martini':
+            if drink_has(ices,drink_keywords):
+                drink['ice'] = best_choice(drink_keywords,ices)
 
     return drink
 
