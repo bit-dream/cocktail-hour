@@ -178,6 +178,24 @@ export const generateIngredientsList = (ingredients: CocktailData) => {
       ingredientsMap.set(value , '-')
       }
     }
+    if (key === 'sour' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1/2 part')
+        })
+      } else {
+      ingredientsMap.set(value , '1 part')
+      }
+    }
+    if (key === 'foam' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '-')
+        })
+      } else {
+      ingredientsMap.set(value , '-')
+      }
+    }
     if (key === 'garnish' && value !== null) {
       if (Array.isArray(value)) {
         value.forEach(ingredient => {

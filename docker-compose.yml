@@ -13,6 +13,8 @@ services:
     environment:
       - FLASK_CONFIG=production
       - FLASK_ENV=production
+    depends_on:
+      - db
 
   nginx:
     build:
@@ -53,3 +55,10 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - api
+
+    db:
+      container_name: db
+      build:
+        context: ./database
+        dockerfile: Dockerfile
+      
