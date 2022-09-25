@@ -57,15 +57,19 @@ services:
       - api
 
   db:
-    container_name: db
+    image: postgres:14.1-alpine
     restart: always
-    build:
-      context: ./database
-      dockerfile: Dockerfile
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./database/create_fixtures.sql:/docker-entrypoint-initdb.d/create_fixtures.sql
     environment:
-      - POSTGRES_PASSWORD: "secret"
-      - POSTGRES_DB: "database"
-      - POSTGRES_USER: "djblack"
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=database
+      - POSTGRES_USER=djblack
     ports:
-    - 5432:5432
+      - '5432:5432'
+
+volumes:
+  db:
+    driver: local
       
