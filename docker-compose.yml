@@ -62,6 +62,10 @@ services:
     build:
       context: ./database
       dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD: "secret"
+      - POSTGRES_DB: "database"
+      - POSTGRES_USER: "djblack"
     ports:
     - 5432:5432
       
