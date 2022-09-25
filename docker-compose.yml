@@ -56,9 +56,12 @@ services:
     depends_on:
       - api
 
-    db:
-      container_name: db
-      build:
-        context: ./database
-        dockerfile: Dockerfile
+  db:
+    container_name: db
+    restart: always
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+    - 5432:5432
       

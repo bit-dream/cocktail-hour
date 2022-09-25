@@ -1,4 +1,3 @@
-from cmath import e
 from crafter import generate_drink
 from fastapi import FastAPI, Response, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,6 +9,8 @@ from simplegmail import Gmail
 from slowapi.errors import RateLimitExceeded
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
+import json
+from database import Database
 
 app = FastAPI(root_path="/v1/api")
 limiter = Limiter(key_func=get_remote_address)
@@ -25,6 +26,9 @@ app.add_middleware(
 
 gmail = Gmail()
 
+db = Database('database','djblack','secret')
+db.set_table('cocktails')
+
 @app.get('/')
 def index():
     return {"Nothing is here"}
@@ -32,7 +36,21 @@ def index():
 @app.get("/craft/")
 async def read_item(keywords: str):
     print(f'Raw keysword search: {keywords}')
-    receipe = generate_drink(keywords)
+
+    keywords = keywords.lower()
+    
+    # Check to see if result has been queried before
+    # if so pull from database since it's faster
+    # than recomputing the recipe
+    query = db.get_cocktail(keywords)
+    if query is None:
+        print('Search does not exist in database. Creating new entry')
+        receipe = generate_drink(keywords)
+        db.add_cocktail(keywords,json.dumps(receipe))
+    else:
+        print('Search exists in database, pulling in directly')
+        receipe = query[1]
+
     print(receipe)
     return receipe
 

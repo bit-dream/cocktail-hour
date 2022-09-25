@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 
 # add and install requirements
 COPY ./requirements.txt /usr/src/app/requirements.txt
-COPY ./api_secrets.py /usr/src/app/api_secrets.py
+#COPY ./api_secrets.py /usr/src/app/api_secrets.py
 RUN pip install -r requirements.txt
 
 
