@@ -84,7 +84,7 @@ const CraftDrink: NextPage = () => {
         isClosable: true,
       })
     });
-  })
+  },[])
 
   return (
     <Box>
