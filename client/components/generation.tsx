@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import CocktailData from "./interfaces"
 
 /* Generates a list of instructions that can be used to paint the instructions screen */ 
@@ -26,7 +27,7 @@ export const generateInstructions = (data: CocktailData): string[] => {
       } else {
         instructions.push(`Add contents to a chilled ${data['glass']} glass`);
       }
-      instructions.push(`Express ${data['oil']} over the drink and glass rim`);
+      instructions.push(`Express ${data['oil']} over the drink and rim`);
       if (data['garnish'] !== null) {
         instructions.push(`Garnish with ${data['garnish']} and serve`)
       }
@@ -114,15 +115,81 @@ export const generateIngredientsList = (ingredients: CocktailData) => {
 
   for (const [key, value] of Object.entries(ingredients)) {
     if (key === 'type' && value === 'blend'){ingredientsMap.set('ice', '1 cup')}
-    if (key === 'spirit' && value !== null) {ingredientsMap.set(value, '2 part')}
-    if (key === 'liqueur' && value !== null) {ingredientsMap.set(value, '1 part')}
-    if (key === 'sweetener' && value !== null) {ingredientsMap.set(value, '1 part')}
-    if (key === 'spice' && value !== null) {ingredientsMap.set(value, '1 pinch')}
-    if (key === 'fizz' && value !== null) {ingredientsMap.set(value, '1/2 part')}
-    if (key === 'bitter' && value !== null) {ingredientsMap.set(value, '2 dashes')}
-    if (key === 'fruit' && value !== null) {ingredientsMap.set(value , '-')}
-    if (key === 'garnish' && value !== null) {ingredientsMap.set(value , '-')}
-    if (key === 'glass' && value !== null) {ingredientsMap.set(value , 'glass')}
+    if (key === 'spirit' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1 part')
+        })
+      } else {
+      ingredientsMap.set(value, '2 part')
+      }
+    }
+    if (key === 'liqueur' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1 part')
+        })
+      } else {
+        ingredientsMap.set(value, '1 part')
+      }
+    }
+    if (key === 'sweetener' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1 part')
+        })
+      } else {
+        ingredientsMap.set(value, '1 part')
+      }
+    }
+    if (key === 'spice' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1 pinch')
+        })
+      } else {
+        ingredientsMap.set(value, '1 pinch')
+      }
+    }
+    if (key === 'fizz' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1/2 part')
+        })
+      } else {
+      ingredientsMap.set(value, '1/2 part')
+      }
+    }
+    if (key === 'bitter' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '1 dash')
+        })
+      } else {
+        ingredientsMap.set(value, '2 dashes')
+      }
+    }
+    if (key === 'fruit' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '-')
+        })
+      } else {
+      ingredientsMap.set(value , '-')
+      }
+    }
+    if (key === 'garnish' && value !== null) {
+      if (Array.isArray(value)) {
+        value.forEach(ingredient => {
+          ingredientsMap.set(ingredient, '-')
+        })
+      } else {
+        ingredientsMap.set(value , '-')
+      }
+    }
+    if (key === 'glass' && value !== null) {
+      ingredientsMap.set(value , 'glass')
+    }
   }
 
   return ingredientsMap
