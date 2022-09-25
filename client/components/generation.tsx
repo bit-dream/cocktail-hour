@@ -8,7 +8,7 @@ export const generateInstructions = (data: CocktailData): string[] => {
 
   switch (data['type']) {
     case 'neat':
-      if (data['ice'] !== null) {
+      if (data['ice'] === null) {
         instructions.push(`Serve ${data['spirit']} neat in a ${data['glass']} glass`);
       } else {
         instructions.push(`In a ${data['glass']} glass add ${data['ice']}`);
