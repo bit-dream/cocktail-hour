@@ -26,7 +26,7 @@ app.add_middleware(
 
 gmail = Gmail()
 
-db = Database('database','djblack','secret')
+db = Database('database','djblack','secret', host='0.0.0.0')
 db.set_table('cocktails')
 
 @app.get('/')
